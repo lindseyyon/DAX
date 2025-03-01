@@ -1,0 +1,10 @@
+-- Definition section
+[DEFINE {  MEASURE <tableName>[<name>] = <expression> }
+        {  COLUMN <tableName>[<name>] = <expression> }
+        {  TABLE <tableName> = <expression> }
+        {  VAR <name> = <expression>}]
+-- Query expression
+EVALUATE <table> 
+-- Result modifiers
+[ORDER BY {<expression> [{ASC | DESC}]}[, …] 
+[START AT {<value>|<parameter>} [, …]]] 
