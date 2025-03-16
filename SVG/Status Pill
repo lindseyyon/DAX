@@ -1,0 +1,104 @@
+New SVG Status Pill = 
+-- Use this inside of a Table or a Matrix visual.
+-- The 'Image size' property of the Table or Matrix should be set to "Height" of 25 px and "Width" of 100 px for the best results.
+
+
+----------------------------------------------------------------------------------------
+-------------------- START CONFIG - SAFELY CHANGE STUFF IN THIS AREA -------------------
+----------------------------------------------------------------------------------------
+
+
+-- Input field config
+IF (
+    HASONEVALUE( 'DateKey'[Year] ),
+
+VAR _CategoryValue =
+    SELECTEDVALUE (
+        'DateKey'[Month-Year]
+    )
+
+VAR _LabelCased = UPPER ( _CategoryValue )
+
+-- Color config.
+-- IMPORTANT: You need to change these values to the values you want to color.
+
+VAR _Color =
+    SWITCH (
+        _CategoryValue,
+        "Value",     "#e03131", -- Red
+        "Value",     "#e8590c", -- Orange
+        "Value",     "#f08c00", -- Yellow
+        "Value",     "#2f9e44", -- Green
+        "Value",     "#099268", -- Teal
+        "Value",     "#0c8599", -- Cyan
+        "Value",     "#1971c2", -- Blue
+        "Value",     "#6741d9", -- Purple
+        "Value",     "#9c36b5", -- Violet
+        "Value",     "#c2255c", -- Pink
+        "Value",     "#846358", -- Brown
+        "Value",     "#343a40", -- Dark Grey
+        "Value",     "#1e1e1e", -- Blackish
+        "Value",     "#000000", -- Black
+        "Value",   "#FFFFFF00", -- Transparent
+        "#000000"
+    )
+    
+
+-- Font config.
+-- IMPORTANT: You need to change these values to the values you want to bold / lighten.
+
+VAR _FontWeight =
+    SWITCH (
+        _CategoryValue,
+        "Value", "950", -- Extra Black
+        "Value", "900", -- Black
+        "Value", "800", -- Extra Bold
+        "Value", "700", -- Bold
+        "Value", "600", -- Semi Bold
+        "Value", "500", -- Medium
+        "Value", "400", -- Normal
+        "Value", "350", -- Semi Light
+        "Value", "300", -- Light
+        "Value", "200", -- Extra Light
+        "400"
+    )
+
+----------------------------------------------------------------------------------------
+----------------------- END CONFIG - BEYOND HERE THERE BE DRAGONS ----------------------
+----------------------------------------------------------------------------------------
+
+
+-- Vectors and SVG code
+VAR _SvgPrefix =
+    "data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg'>"
+    
+VAR _Background =
+    "<rect x='0.5' y='0.5' width='98%' height='95%' rx='15%' fill='"
+        & _Color & "22"
+        & "' stroke='"
+        & _Color
+        & "'/>"
+        
+VAR _Label =
+    "<text x='50%' y='53%' font-family='Segoe UI' font-size='10.5' font-weight='"
+        & _FontWeight
+        & "' fill='"
+        & _Color
+        & "' text-anchor='middle' dominant-baseline='middle'>"
+        & _LabelCased
+        & "</text>"
+        
+VAR _SvgSuffix = "</svg>"
+
+
+-- Result
+VAR _SVG =
+    _SvgPrefix 
+    & _Background
+    & _Label
+    & _SvgSuffix
+
+
+RETURN
+    _SVG
+)
