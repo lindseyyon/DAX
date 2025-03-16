@@ -1,0 +1,1616 @@
+Dump Filters = 
+VAR MaxFilters = 3
+RETURN
+IF ( 
+    ISFILTERED ( _CustomMeasures[Column1] ), 
+    VAR ___f = FILTERS ( _CustomMeasures[Column1] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, _CustomMeasures[Column1] )
+    VAR ___d = CONCATENATEX ( ___t, _CustomMeasures[Column1], ", " )
+    VAR ___x = "_CustomMeasures[Column1] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( 'All Measures'[Column1] ), 
+    VAR ___f = FILTERS ( 'All Measures'[Column1] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, 'All Measures'[Column1] )
+    VAR ___d = CONCATENATEX ( ___t, 'All Measures'[Column1], ", " )
+    VAR ___x = "'All Measures'[Column1] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( 'CF Highlights'[CF Highlights] ), 
+    VAR ___f = FILTERS ( 'CF Highlights'[CF Highlights] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, 'CF Highlights'[CF Highlights] )
+    VAR ___d = CONCATENATEX ( ___t, 'CF Highlights'[CF Highlights], ", " )
+    VAR ___x = "'CF Highlights'[CF Highlights] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( 'CF Highlights'[Ordinal] ), 
+    VAR ___f = FILTERS ( 'CF Highlights'[Ordinal] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, 'CF Highlights'[Ordinal] )
+    VAR ___d = CONCATENATEX ( ___t, 'CF Highlights'[Ordinal], ", " )
+    VAR ___x = "'CF Highlights'[Ordinal] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( dimCalendar[Current Quarter] ), 
+    VAR ___f = FILTERS ( dimCalendar[Current Quarter] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, dimCalendar[Current Quarter] )
+    VAR ___d = CONCATENATEX ( ___t, dimCalendar[Current Quarter], ", " )
+    VAR ___x = "dimCalendar[Current Quarter] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( dimCalendar[DateWithSales] ), 
+    VAR ___f = FILTERS ( dimCalendar[DateWithSales] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, dimCalendar[DateWithSales] )
+    VAR ___d = CONCATENATEX ( ___t, dimCalendar[DateWithSales], ", " )
+    VAR ___x = "dimCalendar[DateWithSales] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( dimCalendar[Day number of year] ), 
+    VAR ___f = FILTERS ( dimCalendar[Day number of year] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, dimCalendar[Day number of year] )
+    VAR ___d = CONCATENATEX ( ___t, dimCalendar[Day number of year], ", " )
+    VAR ___x = "dimCalendar[Day number of year] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( dimCalendar[EndOfMonthDate] ), 
+    VAR ___f = FILTERS ( dimCalendar[EndOfMonthDate] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, dimCalendar[EndOfMonthDate] )
+    VAR ___d = CONCATENATEX ( ___t, dimCalendar[EndOfMonthDate], ", " )
+    VAR ___x = "dimCalendar[EndOfMonthDate] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( dimCalendar[EndOfWeekDate_MS] ), 
+    VAR ___f = FILTERS ( dimCalendar[EndOfWeekDate_MS] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, dimCalendar[EndOfWeekDate_MS] )
+    VAR ___d = CONCATENATEX ( ___t, dimCalendar[EndOfWeekDate_MS], ", " )
+    VAR ___x = "dimCalendar[EndOfWeekDate_MS] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( dimCalendar[EndOfYearDate] ), 
+    VAR ___f = FILTERS ( dimCalendar[EndOfYearDate] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, dimCalendar[EndOfYearDate] )
+    VAR ___d = CONCATENATEX ( ___t, dimCalendar[EndOfYearDate], ", " )
+    VAR ___x = "dimCalendar[EndOfYearDate] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( dimCalendar[EOWeek] ), 
+    VAR ___f = FILTERS ( dimCalendar[EOWeek] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, dimCalendar[EOWeek] )
+    VAR ___d = CONCATENATEX ( ___t, dimCalendar[EOWeek], ", " )
+    VAR ___x = "dimCalendar[EOWeek] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( dimCalendar[Month] ), 
+    VAR ___f = FILTERS ( dimCalendar[Month] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, dimCalendar[Month] )
+    VAR ___d = CONCATENATEX ( ___t, dimCalendar[Month], ", " )
+    VAR ___x = "dimCalendar[Month] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( dimCalendar[Month Name Full Version] ), 
+    VAR ___f = FILTERS ( dimCalendar[Month Name Full Version] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, dimCalendar[Month Name Full Version] )
+    VAR ___d = CONCATENATEX ( ___t, dimCalendar[Month Name Full Version], ", " )
+    VAR ___x = "dimCalendar[Month Name Full Version] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( dimCalendar[Month Number] ), 
+    VAR ___f = FILTERS ( dimCalendar[Month Number] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, dimCalendar[Month Number] )
+    VAR ___d = CONCATENATEX ( ___t, dimCalendar[Month Number], ", " )
+    VAR ___x = "dimCalendar[Month Number] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( dimCalendar[Rolling13Weeks] ), 
+    VAR ___f = FILTERS ( dimCalendar[Rolling13Weeks] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, dimCalendar[Rolling13Weeks] )
+    VAR ___d = CONCATENATEX ( ___t, dimCalendar[Rolling13Weeks], ", " )
+    VAR ___x = "dimCalendar[Rolling13Weeks] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( dimCalendar[Rolling13Weeks_LY] ), 
+    VAR ___f = FILTERS ( dimCalendar[Rolling13Weeks_LY] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, dimCalendar[Rolling13Weeks_LY] )
+    VAR ___d = CONCATENATEX ( ___t, dimCalendar[Rolling13Weeks_LY], ", " )
+    VAR ___x = "dimCalendar[Rolling13Weeks_LY] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( dimCalendar[SequentialDayNumber] ), 
+    VAR ___f = FILTERS ( dimCalendar[SequentialDayNumber] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, dimCalendar[SequentialDayNumber] )
+    VAR ___d = CONCATENATEX ( ___t, dimCalendar[SequentialDayNumber], ", " )
+    VAR ___x = "dimCalendar[SequentialDayNumber] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( dimCalendar[StartOfMonthDate] ), 
+    VAR ___f = FILTERS ( dimCalendar[StartOfMonthDate] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, dimCalendar[StartOfMonthDate] )
+    VAR ___d = CONCATENATEX ( ___t, dimCalendar[StartOfMonthDate], ", " )
+    VAR ___x = "dimCalendar[StartOfMonthDate] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( dimCalendar[StartOfWeekDate_MS] ), 
+    VAR ___f = FILTERS ( dimCalendar[StartOfWeekDate_MS] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, dimCalendar[StartOfWeekDate_MS] )
+    VAR ___d = CONCATENATEX ( ___t, dimCalendar[StartOfWeekDate_MS], ", " )
+    VAR ___x = "dimCalendar[StartOfWeekDate_MS] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( dimCalendar[StartOfYearDate] ), 
+    VAR ___f = FILTERS ( dimCalendar[StartOfYearDate] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, dimCalendar[StartOfYearDate] )
+    VAR ___d = CONCATENATEX ( ___t, dimCalendar[StartOfYearDate], ", " )
+    VAR ___x = "dimCalendar[StartOfYearDate] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( dimCalendar[TheDate] ), 
+    VAR ___f = FILTERS ( dimCalendar[TheDate] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, dimCalendar[TheDate] )
+    VAR ___d = CONCATENATEX ( ___t, dimCalendar[TheDate], ", " )
+    VAR ___x = "dimCalendar[TheDate] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( dimCalendar[Today] ), 
+    VAR ___f = FILTERS ( dimCalendar[Today] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, dimCalendar[Today] )
+    VAR ___d = CONCATENATEX ( ___t, dimCalendar[Today], ", " )
+    VAR ___x = "dimCalendar[Today] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( dimCalendar[Week] ), 
+    VAR ___f = FILTERS ( dimCalendar[Week] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, dimCalendar[Week] )
+    VAR ___d = CONCATENATEX ( ___t, dimCalendar[Week], ", " )
+    VAR ___x = "dimCalendar[Week] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( dimCalendar[Week Day] ), 
+    VAR ___f = FILTERS ( dimCalendar[Week Day] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, dimCalendar[Week Day] )
+    VAR ___d = CONCATENATEX ( ___t, dimCalendar[Week Day], ", " )
+    VAR ___x = "dimCalendar[Week Day] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( dimCalendar[Week number of year Monday as the first day of week] ), 
+    VAR ___f = FILTERS ( dimCalendar[Week number of year Monday as the first day of week] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, dimCalendar[Week number of year Monday as the first day of week] )
+    VAR ___d = CONCATENATEX ( ___t, dimCalendar[Week number of year Monday as the first day of week], ", " )
+    VAR ___x = "dimCalendar[Week number of year Monday as the first day of week] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( dimCalendar[Week number of year Sunday as the first day of week] ), 
+    VAR ___f = FILTERS ( dimCalendar[Week number of year Sunday as the first day of week] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, dimCalendar[Week number of year Sunday as the first day of week] )
+    VAR ___d = CONCATENATEX ( ___t, dimCalendar[Week number of year Sunday as the first day of week], ", " )
+    VAR ___x = "dimCalendar[Week number of year Sunday as the first day of week] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( dimCalendar[Weeks] ), 
+    VAR ___f = FILTERS ( dimCalendar[Weeks] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, dimCalendar[Weeks] )
+    VAR ___d = CONCATENATEX ( ___t, dimCalendar[Weeks], ", " )
+    VAR ___x = "dimCalendar[Weeks] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( dimCalendar[Year] ), 
+    VAR ___f = FILTERS ( dimCalendar[Year] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, dimCalendar[Year] )
+    VAR ___d = CONCATENATEX ( ___t, dimCalendar[Year], ", " )
+    VAR ___x = "dimCalendar[Year] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( dimCalendar[YearMonthAbbreviation] ), 
+    VAR ___f = FILTERS ( dimCalendar[YearMonthAbbreviation] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, dimCalendar[YearMonthAbbreviation] )
+    VAR ___d = CONCATENATEX ( ___t, dimCalendar[YearMonthAbbreviation], ", " )
+    VAR ___x = "dimCalendar[YearMonthAbbreviation] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( dimCalendar[Yesterday] ), 
+    VAR ___f = FILTERS ( dimCalendar[Yesterday] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, dimCalendar[Yesterday] )
+    VAR ___d = CONCATENATEX ( ___t, dimCalendar[Yesterday], ", " )
+    VAR ___x = "dimCalendar[Yesterday] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( dimMetricSelect[ID] ), 
+    VAR ___f = FILTERS ( dimMetricSelect[ID] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, dimMetricSelect[ID] )
+    VAR ___d = CONCATENATEX ( ___t, dimMetricSelect[ID], ", " )
+    VAR ___x = "dimMetricSelect[ID] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( dimMetricSelect[JOIN_ID] ), 
+    VAR ___f = FILTERS ( dimMetricSelect[JOIN_ID] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, dimMetricSelect[JOIN_ID] )
+    VAR ___d = CONCATENATEX ( ___t, dimMetricSelect[JOIN_ID], ", " )
+    VAR ___x = "dimMetricSelect[JOIN_ID] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( dimMetricSelect[Metric Image URL] ), 
+    VAR ___f = FILTERS ( dimMetricSelect[Metric Image URL] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, dimMetricSelect[Metric Image URL] )
+    VAR ___d = CONCATENATEX ( ___t, dimMetricSelect[Metric Image URL], ", " )
+    VAR ___x = "dimMetricSelect[Metric Image URL] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( dimMetricSelect[Metric Name] ), 
+    VAR ___f = FILTERS ( dimMetricSelect[Metric Name] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, dimMetricSelect[Metric Name] )
+    VAR ___d = CONCATENATEX ( ___t, dimMetricSelect[Metric Name], ", " )
+    VAR ___x = "dimMetricSelect[Metric Name] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[2019 Vehicle Age] ), 
+    VAR ___f = FILTERS ( factVariance[2019 Vehicle Age] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[2019 Vehicle Age] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[2019 Vehicle Age], ", " )
+    VAR ___x = "factVariance[2019 Vehicle Age] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[2020 Vehicle Age] ), 
+    VAR ___f = FILTERS ( factVariance[2020 Vehicle Age] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[2020 Vehicle Age] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[2020 Vehicle Age], ", " )
+    VAR ___x = "factVariance[2020 Vehicle Age] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[2021 Vehicle Age] ), 
+    VAR ___f = FILTERS ( factVariance[2021 Vehicle Age] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[2021 Vehicle Age] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[2021 Vehicle Age], ", " )
+    VAR ___x = "factVariance[2021 Vehicle Age] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[2022 Vehicle Age] ), 
+    VAR ___f = FILTERS ( factVariance[2022 Vehicle Age] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[2022 Vehicle Age] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[2022 Vehicle Age], ", " )
+    VAR ___x = "factVariance[2022 Vehicle Age] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Activity Type] ), 
+    VAR ___f = FILTERS ( factVariance[Activity Type] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Activity Type] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Activity Type], ", " )
+    VAR ___x = "factVariance[Activity Type] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[AmendmentsAndOtherActivities] ), 
+    VAR ___f = FILTERS ( factVariance[AmendmentsAndOtherActivities] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[AmendmentsAndOtherActivities] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[AmendmentsAndOtherActivities], ", " )
+    VAR ___x = "factVariance[AmendmentsAndOtherActivities] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Budget Premium] ), 
+    VAR ___f = FILTERS ( factVariance[Budget Premium] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Budget Premium] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Budget Premium], ", " )
+    VAR ___x = "factVariance[Budget Premium] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Budget Responses] ), 
+    VAR ___f = FILTERS ( factVariance[Budget Responses] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Budget Responses] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Budget Responses], ", " )
+    VAR ___x = "factVariance[Budget Responses] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Budget Sales Group Premium] ), 
+    VAR ___f = FILTERS ( factVariance[Budget Sales Group Premium] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Budget Sales Group Premium] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Budget Sales Group Premium], ", " )
+    VAR ___x = "factVariance[Budget Sales Group Premium] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[CentralDate] ), 
+    VAR ___f = FILTERS ( factVariance[CentralDate] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[CentralDate] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[CentralDate], ", " )
+    VAR ___x = "factVariance[CentralDate] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[CentralDay] ), 
+    VAR ___f = FILTERS ( factVariance[CentralDay] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[CentralDay] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[CentralDay], ", " )
+    VAR ___x = "factVariance[CentralDay] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[CentralMonth] ), 
+    VAR ___f = FILTERS ( factVariance[CentralMonth] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[CentralMonth] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[CentralMonth], ", " )
+    VAR ___x = "factVariance[CentralMonth] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[CentralYear] ), 
+    VAR ___f = FILTERS ( factVariance[CentralYear] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[CentralYear] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[CentralYear], ", " )
+    VAR ___x = "factVariance[CentralYear] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Channel Group] ), 
+    VAR ___f = FILTERS ( factVariance[Channel Group] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Channel Group] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Channel Group], ", " )
+    VAR ___x = "factVariance[Channel Group] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Contract Location] ), 
+    VAR ___f = FILTERS ( factVariance[Contract Location] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Contract Location] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Contract Location], ", " )
+    VAR ___x = "factVariance[Contract Location] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Contract Number Renewal Sequence #] ), 
+    VAR ___f = FILTERS ( factVariance[Contract Number Renewal Sequence #] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Contract Number Renewal Sequence #] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Contract Number Renewal Sequence #], ", " )
+    VAR ___x = "factVariance[Contract Number Renewal Sequence #] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Contract Term] ), 
+    VAR ___f = FILTERS ( factVariance[Contract Term] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Contract Term] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Contract Term], ", " )
+    VAR ___x = "factVariance[Contract Term] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[ContractNumber] ), 
+    VAR ___f = FILTERS ( factVariance[ContractNumber] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[ContractNumber] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[ContractNumber], ", " )
+    VAR ___x = "factVariance[ContractNumber] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[ContractNumber - Copy.1] ), 
+    VAR ___f = FILTERS ( factVariance[ContractNumber - Copy.1] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[ContractNumber - Copy.1] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[ContractNumber - Copy.1], ", " )
+    VAR ___x = "factVariance[ContractNumber - Copy.1] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[ContractNumber - Copy.4] ), 
+    VAR ___f = FILTERS ( factVariance[ContractNumber - Copy.4] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[ContractNumber - Copy.4] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[ContractNumber - Copy.4], ", " )
+    VAR ___x = "factVariance[ContractNumber - Copy.4] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[ContractNumberID] ), 
+    VAR ___f = FILTERS ( factVariance[ContractNumberID] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[ContractNumberID] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[ContractNumberID], ", " )
+    VAR ___x = "factVariance[ContractNumberID] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[contractsalesperson] ), 
+    VAR ___f = FILTERS ( factVariance[contractsalesperson] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[contractsalesperson] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[contractsalesperson], ", " )
+    VAR ___x = "factVariance[contractsalesperson] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Coverage Type Description] ), 
+    VAR ___f = FILTERS ( factVariance[Coverage Type Description] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Coverage Type Description] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Coverage Type Description], ", " )
+    VAR ___x = "factVariance[Coverage Type Description] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Current Year Vehicle Age] ), 
+    VAR ___f = FILTERS ( factVariance[Current Year Vehicle Age] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Current Year Vehicle Age] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Current Year Vehicle Age], ", " )
+    VAR ___x = "factVariance[Current Year Vehicle Age] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[CustomerRequestedQuotes] ), 
+    VAR ___f = FILTERS ( factVariance[CustomerRequestedQuotes] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[CustomerRequestedQuotes] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[CustomerRequestedQuotes], ", " )
+    VAR ___x = "factVariance[CustomerRequestedQuotes] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Effective NetRevenue] ), 
+    VAR ___f = FILTERS ( factVariance[Effective NetRevenue] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Effective NetRevenue] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Effective NetRevenue], ", " )
+    VAR ___x = "factVariance[Effective NetRevenue] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Effective PolicyCount] ), 
+    VAR ___f = FILTERS ( factVariance[Effective PolicyCount] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Effective PolicyCount] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Effective PolicyCount], ", " )
+    VAR ___x = "factVariance[Effective PolicyCount] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[EffectiveContractMonths] ), 
+    VAR ___f = FILTERS ( factVariance[EffectiveContractMonths] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[EffectiveContractMonths] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[EffectiveContractMonths], ", " )
+    VAR ___x = "factVariance[EffectiveContractMonths] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Expire Date] ), 
+    VAR ___f = FILTERS ( factVariance[Expire Date] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Expire Date] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Expire Date], ", " )
+    VAR ___x = "factVariance[Expire Date] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Index] ), 
+    VAR ___f = FILTERS ( factVariance[Index] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Index] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Index], ", " )
+    VAR ___x = "factVariance[Index] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[LOBProductCategoryDescription] ), 
+    VAR ___f = FILTERS ( factVariance[LOBProductCategoryDescription] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[LOBProductCategoryDescription] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[LOBProductCategoryDescription], ", " )
+    VAR ___x = "factVariance[LOBProductCategoryDescription] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[LOBProductCategoryId] ), 
+    VAR ___f = FILTERS ( factVariance[LOBProductCategoryId] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[LOBProductCategoryId] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[LOBProductCategoryId], ", " )
+    VAR ___x = "factVariance[LOBProductCategoryId] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Location Group] ), 
+    VAR ___f = FILTERS ( factVariance[Location Group] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Location Group] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Location Group], ", " )
+    VAR ___x = "factVariance[Location Group] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Model Year] ), 
+    VAR ___f = FILTERS ( factVariance[Model Year] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Model Year] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Model Year], ", " )
+    VAR ___x = "factVariance[Model Year] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[NetRevenue] ), 
+    VAR ___f = FILTERS ( factVariance[NetRevenue] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[NetRevenue] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[NetRevenue], ", " )
+    VAR ___x = "factVariance[NetRevenue] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Other] ), 
+    VAR ___f = FILTERS ( factVariance[Other] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Other] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Other], ", " )
+    VAR ___x = "factVariance[Other] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[PayableDate] ), 
+    VAR ___f = FILTERS ( factVariance[PayableDate] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[PayableDate] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[PayableDate], ", " )
+    VAR ___x = "factVariance[PayableDate] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[PayableDay] ), 
+    VAR ___f = FILTERS ( factVariance[PayableDay] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[PayableDay] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[PayableDay], ", " )
+    VAR ___x = "factVariance[PayableDay] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[PayableMonth] ), 
+    VAR ___f = FILTERS ( factVariance[PayableMonth] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[PayableMonth] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[PayableMonth], ", " )
+    VAR ___x = "factVariance[PayableMonth] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[PayableYear] ), 
+    VAR ___f = FILTERS ( factVariance[PayableYear] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[PayableYear] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[PayableYear], ", " )
+    VAR ___x = "factVariance[PayableYear] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[PaymentMethodTypeDefinition] ), 
+    VAR ___f = FILTERS ( factVariance[PaymentMethodTypeDefinition] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[PaymentMethodTypeDefinition] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[PaymentMethodTypeDefinition], ", " )
+    VAR ___x = "factVariance[PaymentMethodTypeDefinition] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[PaymentMethodTypeId] ), 
+    VAR ___f = FILTERS ( factVariance[PaymentMethodTypeId] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[PaymentMethodTypeId] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[PaymentMethodTypeId], ", " )
+    VAR ___x = "factVariance[PaymentMethodTypeId] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[PaymentMethodTypeName] ), 
+    VAR ___f = FILTERS ( factVariance[PaymentMethodTypeName] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[PaymentMethodTypeName] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[PaymentMethodTypeName], ", " )
+    VAR ___x = "factVariance[PaymentMethodTypeName] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[PaymentStatusTypeDefinition] ), 
+    VAR ___f = FILTERS ( factVariance[PaymentStatusTypeDefinition] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[PaymentStatusTypeDefinition] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[PaymentStatusTypeDefinition], ", " )
+    VAR ___x = "factVariance[PaymentStatusTypeDefinition] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[PaymentStatusTypeId] ), 
+    VAR ___f = FILTERS ( factVariance[PaymentStatusTypeId] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[PaymentStatusTypeId] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[PaymentStatusTypeId], ", " )
+    VAR ___x = "factVariance[PaymentStatusTypeId] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[PaymentStatusTypeName] ), 
+    VAR ___f = FILTERS ( factVariance[PaymentStatusTypeName] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[PaymentStatusTypeName] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[PaymentStatusTypeName], ", " )
+    VAR ___x = "factVariance[PaymentStatusTypeName] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Policy Status] ), 
+    VAR ___f = FILTERS ( factVariance[Policy Status] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Policy Status] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Policy Status], ", " )
+    VAR ___x = "factVariance[Policy Status] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[PolicyCount] ), 
+    VAR ___f = FILTERS ( factVariance[PolicyCount] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[PolicyCount] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[PolicyCount], ", " )
+    VAR ___x = "factVariance[PolicyCount] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Product Term] ), 
+    VAR ___f = FILTERS ( factVariance[Product Term] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Product Term] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Product Term], ", " )
+    VAR ___x = "factVariance[Product Term] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[ProgramTypeDescription] ), 
+    VAR ___f = FILTERS ( factVariance[ProgramTypeDescription] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[ProgramTypeDescription] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[ProgramTypeDescription], ", " )
+    VAR ___x = "factVariance[ProgramTypeDescription] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[ProgramTypeId] ), 
+    VAR ___f = FILTERS ( factVariance[ProgramTypeId] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[ProgramTypeId] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[ProgramTypeId], ", " )
+    VAR ___x = "factVariance[ProgramTypeId] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Projected SoldDate PolicyCount] ), 
+    VAR ___f = FILTERS ( factVariance[Projected SoldDate PolicyCount] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Projected SoldDate PolicyCount] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Projected SoldDate PolicyCount], ", " )
+    VAR ___x = "factVariance[Projected SoldDate PolicyCount] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Projected SoldDate Premium] ), 
+    VAR ___f = FILTERS ( factVariance[Projected SoldDate Premium] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Projected SoldDate Premium] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Projected SoldDate Premium], ", " )
+    VAR ___x = "factVariance[Projected SoldDate Premium] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[ProjectedCustomerRequestedQuoteCount] ), 
+    VAR ___f = FILTERS ( factVariance[ProjectedCustomerRequestedQuoteCount] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[ProjectedCustomerRequestedQuoteCount] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[ProjectedCustomerRequestedQuoteCount], ", " )
+    VAR ___x = "factVariance[ProjectedCustomerRequestedQuoteCount] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[ProjectedPolicyCount] ), 
+    VAR ___f = FILTERS ( factVariance[ProjectedPolicyCount] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[ProjectedPolicyCount] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[ProjectedPolicyCount], ", " )
+    VAR ___x = "factVariance[ProjectedPolicyCount] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[ProjectedPolicyCount_Deprecated] ), 
+    VAR ___f = FILTERS ( factVariance[ProjectedPolicyCount_Deprecated] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[ProjectedPolicyCount_Deprecated] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[ProjectedPolicyCount_Deprecated], ", " )
+    VAR ___x = "factVariance[ProjectedPolicyCount_Deprecated] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[ProjectedPolicyCount_StrictlyProjections] ), 
+    VAR ___f = FILTERS ( factVariance[ProjectedPolicyCount_StrictlyProjections] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[ProjectedPolicyCount_StrictlyProjections] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[ProjectedPolicyCount_StrictlyProjections], ", " )
+    VAR ___x = "factVariance[ProjectedPolicyCount_StrictlyProjections] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[ProjectedPremium] ), 
+    VAR ___f = FILTERS ( factVariance[ProjectedPremium] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[ProjectedPremium] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[ProjectedPremium], ", " )
+    VAR ___x = "factVariance[ProjectedPremium] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[ProjectedPremium_Deprecated] ), 
+    VAR ___f = FILTERS ( factVariance[ProjectedPremium_Deprecated] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[ProjectedPremium_Deprecated] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[ProjectedPremium_Deprecated], ", " )
+    VAR ___x = "factVariance[ProjectedPremium_Deprecated] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[ProjectedPremium_StrictlyProjections] ), 
+    VAR ___f = FILTERS ( factVariance[ProjectedPremium_StrictlyProjections] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[ProjectedPremium_StrictlyProjections] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[ProjectedPremium_StrictlyProjections], ", " )
+    VAR ___x = "factVariance[ProjectedPremium_StrictlyProjections] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[ProjectedQuoteCount] ), 
+    VAR ___f = FILTERS ( factVariance[ProjectedQuoteCount] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[ProjectedQuoteCount] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[ProjectedQuoteCount], ", " )
+    VAR ___x = "factVariance[ProjectedQuoteCount] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[ProjectedSystemGeneratedQuoteCount] ), 
+    VAR ___f = FILTERS ( factVariance[ProjectedSystemGeneratedQuoteCount] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[ProjectedSystemGeneratedQuoteCount] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[ProjectedSystemGeneratedQuoteCount], ", " )
+    VAR ___x = "factVariance[ProjectedSystemGeneratedQuoteCount] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Quote Action Type Name] ), 
+    VAR ___f = FILTERS ( factVariance[Quote Action Type Name] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Quote Action Type Name] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Quote Action Type Name], ", " )
+    VAR ___x = "factVariance[Quote Action Type Name] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Quote Budget Responses] ), 
+    VAR ___f = FILTERS ( factVariance[Quote Budget Responses] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Quote Budget Responses] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Quote Budget Responses], ", " )
+    VAR ___x = "factVariance[Quote Budget Responses] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Quote Effective Date] ), 
+    VAR ___f = FILTERS ( factVariance[Quote Effective Date] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Quote Effective Date] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Quote Effective Date], ", " )
+    VAR ___x = "factVariance[Quote Effective Date] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Quote Effective Year] ), 
+    VAR ___f = FILTERS ( factVariance[Quote Effective Year] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Quote Effective Year] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Quote Effective Year], ", " )
+    VAR ___x = "factVariance[Quote Effective Year] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Quote Expire Date] ), 
+    VAR ___f = FILTERS ( factVariance[Quote Expire Date] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Quote Expire Date] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Quote Expire Date], ", " )
+    VAR ___x = "factVariance[Quote Expire Date] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Quote Location] ), 
+    VAR ___f = FILTERS ( factVariance[Quote Location] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Quote Location] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Quote Location], ", " )
+    VAR ___x = "factVariance[Quote Location] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Quote Origination] ), 
+    VAR ___f = FILTERS ( factVariance[Quote Origination] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Quote Origination] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Quote Origination], ", " )
+    VAR ___x = "factVariance[Quote Origination] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Quote Type] ), 
+    VAR ___f = FILTERS ( factVariance[Quote Type] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Quote Type] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Quote Type], ", " )
+    VAR ___x = "factVariance[Quote Type] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Quote Type Prefix] ), 
+    VAR ___f = FILTERS ( factVariance[Quote Type Prefix] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Quote Type Prefix] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Quote Type Prefix], ", " )
+    VAR ___x = "factVariance[Quote Type Prefix] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[QuoteActionGroup] ), 
+    VAR ___f = FILTERS ( factVariance[QuoteActionGroup] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[QuoteActionGroup] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[QuoteActionGroup], ", " )
+    VAR ___x = "factVariance[QuoteActionGroup] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[QuoteActionGroupId] ), 
+    VAR ___f = FILTERS ( factVariance[QuoteActionGroupId] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[QuoteActionGroupId] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[QuoteActionGroupId], ", " )
+    VAR ___x = "factVariance[QuoteActionGroupId] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[QuoteCount] ), 
+    VAR ___f = FILTERS ( factVariance[QuoteCount] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[QuoteCount] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[QuoteCount], ", " )
+    VAR ___x = "factVariance[QuoteCount] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[quotesalesperson] ), 
+    VAR ___f = FILTERS ( factVariance[quotesalesperson] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[quotesalesperson] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[quotesalesperson], ", " )
+    VAR ___x = "factVariance[quotesalesperson] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[QuoteTypeId] ), 
+    VAR ___f = FILTERS ( factVariance[QuoteTypeId] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[QuoteTypeId] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[QuoteTypeId], ", " )
+    VAR ___x = "factVariance[QuoteTypeId] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Record Type] ), 
+    VAR ___f = FILTERS ( factVariance[Record Type] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Record Type] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Record Type], ", " )
+    VAR ___x = "factVariance[Record Type] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Sales Group] ), 
+    VAR ___f = FILTERS ( factVariance[Sales Group] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Sales Group] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Sales Group], ", " )
+    VAR ___x = "factVariance[Sales Group] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Same Closing Agent] ), 
+    VAR ___f = FILTERS ( factVariance[Same Closing Agent] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Same Closing Agent] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Same Closing Agent], ", " )
+    VAR ___x = "factVariance[Same Closing Agent] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[SOL] ), 
+    VAR ___f = FILTERS ( factVariance[SOL] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[SOL] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[SOL], ", " )
+    VAR ___x = "factVariance[SOL] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[SOL Channel Location Name] ), 
+    VAR ___f = FILTERS ( factVariance[SOL Channel Location Name] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[SOL Channel Location Name] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[SOL Channel Location Name], ", " )
+    VAR ___x = "factVariance[SOL Channel Location Name] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[SOL Channel Name] ), 
+    VAR ___f = FILTERS ( factVariance[SOL Channel Name] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[SOL Channel Name] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[SOL Channel Name], ", " )
+    VAR ___x = "factVariance[SOL Channel Name] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[SOL Unique Identifier] ), 
+    VAR ___f = FILTERS ( factVariance[SOL Unique Identifier] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[SOL Unique Identifier] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[SOL Unique Identifier], ", " )
+    VAR ___x = "factVariance[SOL Unique Identifier] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Sold PolicyCount] ), 
+    VAR ___f = FILTERS ( factVariance[Sold PolicyCount] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Sold PolicyCount] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Sold PolicyCount], ", " )
+    VAR ___x = "factVariance[Sold PolicyCount] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[SoldContractMonths] ), 
+    VAR ___f = FILTERS ( factVariance[SoldContractMonths] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[SoldContractMonths] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[SoldContractMonths], ", " )
+    VAR ___x = "factVariance[SoldContractMonths] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[SoldDate NetRevenue] ), 
+    VAR ___f = FILTERS ( factVariance[SoldDate NetRevenue] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[SoldDate NetRevenue] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[SoldDate NetRevenue], ", " )
+    VAR ___x = "factVariance[SoldDate NetRevenue] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[SoldDay] ), 
+    VAR ___f = FILTERS ( factVariance[SoldDay] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[SoldDay] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[SoldDay], ", " )
+    VAR ___x = "factVariance[SoldDay] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[SoldMonth] ), 
+    VAR ___f = FILTERS ( factVariance[SoldMonth] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[SoldMonth] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[SoldMonth], ", " )
+    VAR ___x = "factVariance[SoldMonth] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[SoldTransactionDay] ), 
+    VAR ___f = FILTERS ( factVariance[SoldTransactionDay] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[SoldTransactionDay] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[SoldTransactionDay], ", " )
+    VAR ___x = "factVariance[SoldTransactionDay] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[SoldTransactionMonth] ), 
+    VAR ___f = FILTERS ( factVariance[SoldTransactionMonth] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[SoldTransactionMonth] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[SoldTransactionMonth], ", " )
+    VAR ___x = "factVariance[SoldTransactionMonth] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[SoldTransactionYear] ), 
+    VAR ___f = FILTERS ( factVariance[SoldTransactionYear] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[SoldTransactionYear] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[SoldTransactionYear], ", " )
+    VAR ___x = "factVariance[SoldTransactionYear] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[SoldYear] ), 
+    VAR ___f = FILTERS ( factVariance[SoldYear] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[SoldYear] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[SoldYear], ", " )
+    VAR ___x = "factVariance[SoldYear] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[SystemGeneratedQuotes] ), 
+    VAR ___f = FILTERS ( factVariance[SystemGeneratedQuotes] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[SystemGeneratedQuotes] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[SystemGeneratedQuotes], ", " )
+    VAR ___x = "factVariance[SystemGeneratedQuotes] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Transaction Type] ), 
+    VAR ___f = FILTERS ( factVariance[Transaction Type] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Transaction Type] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Transaction Type], ", " )
+    VAR ___x = "factVariance[Transaction Type] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Vehicle Rating Class Description] ), 
+    VAR ___f = FILTERS ( factVariance[Vehicle Rating Class Description] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Vehicle Rating Class Description] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Vehicle Rating Class Description], ", " )
+    VAR ___x = "factVariance[Vehicle Rating Class Description] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Vehicle Rating Type Desc] ), 
+    VAR ___f = FILTERS ( factVariance[Vehicle Rating Type Desc] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Vehicle Rating Type Desc] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Vehicle Rating Type Desc], ", " )
+    VAR ___x = "factVariance[Vehicle Rating Type Desc] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[Vehicle Rating Type Product] ), 
+    VAR ___f = FILTERS ( factVariance[Vehicle Rating Type Product] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[Vehicle Rating Type Product] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[Vehicle Rating Type Product], ", " )
+    VAR ___x = "factVariance[Vehicle Rating Type Product] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( factVariance[VIN] ), 
+    VAR ___f = FILTERS ( factVariance[VIN] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, factVariance[VIN] )
+    VAR ___d = CONCATENATEX ( ___t, factVariance[VIN], ", " )
+    VAR ___x = "factVariance[VIN] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( FromFolder[BinaryToPbiImage] ), 
+    VAR ___f = FILTERS ( FromFolder[BinaryToPbiImage] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, FromFolder[BinaryToPbiImage] )
+    VAR ___d = CONCATENATEX ( ___t, FromFolder[BinaryToPbiImage], ", " )
+    VAR ___x = "FromFolder[BinaryToPbiImage] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( FromFolder[Date accessed] ), 
+    VAR ___f = FILTERS ( FromFolder[Date accessed] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, FromFolder[Date accessed] )
+    VAR ___d = CONCATENATEX ( ___t, FromFolder[Date accessed], ", " )
+    VAR ___x = "FromFolder[Date accessed] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( FromFolder[Date created] ), 
+    VAR ___f = FILTERS ( FromFolder[Date created] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, FromFolder[Date created] )
+    VAR ___d = CONCATENATEX ( ___t, FromFolder[Date created], ", " )
+    VAR ___x = "FromFolder[Date created] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( FromFolder[Date modified] ), 
+    VAR ___f = FILTERS ( FromFolder[Date modified] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, FromFolder[Date modified] )
+    VAR ___d = CONCATENATEX ( ___t, FromFolder[Date modified], ", " )
+    VAR ___x = "FromFolder[Date modified] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( FromFolder[Extension] ), 
+    VAR ___f = FILTERS ( FromFolder[Extension] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, FromFolder[Extension] )
+    VAR ___d = CONCATENATEX ( ___t, FromFolder[Extension], ", " )
+    VAR ___x = "FromFolder[Extension] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( FromFolder[Folder Path] ), 
+    VAR ___f = FILTERS ( FromFolder[Folder Path] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, FromFolder[Folder Path] )
+    VAR ___d = CONCATENATEX ( ___t, FromFolder[Folder Path], ", " )
+    VAR ___x = "FromFolder[Folder Path] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( FromFolder[Name] ), 
+    VAR ___f = FILTERS ( FromFolder[Name] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, FromFolder[Name] )
+    VAR ___d = CONCATENATEX ( ___t, FromFolder[Name], ", " )
+    VAR ___x = "FromFolder[Name] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( FromURL[Base64] ), 
+    VAR ___f = FILTERS ( FromURL[Base64] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, FromURL[Base64] )
+    VAR ___d = CONCATENATEX ( ___t, FromURL[Base64], ", " )
+    VAR ___x = "FromURL[Base64] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( FromURL[Content] ), 
+    VAR ___f = FILTERS ( FromURL[Content] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, FromURL[Content] )
+    VAR ___d = CONCATENATEX ( ___t, FromURL[Content], ", " )
+    VAR ___x = "FromURL[Content] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( FromURL[Name] ), 
+    VAR ___f = FILTERS ( FromURL[Name] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, FromURL[Name] )
+    VAR ___d = CONCATENATEX ( ___t, FromURL[Name], ", " )
+    VAR ___x = "FromURL[Name] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( FromURL[URL] ), 
+    VAR ___f = FILTERS ( FromURL[URL] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, FromURL[URL] )
+    VAR ___d = CONCATENATEX ( ___t, FromURL[URL], ", " )
+    VAR ___x = "FromURL[URL] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( FromURL[UrlToImage] ), 
+    VAR ___f = FILTERS ( FromURL[UrlToImage] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, FromURL[UrlToImage] )
+    VAR ___d = CONCATENATEX ( ___t, FromURL[UrlToImage], ", " )
+    VAR ___x = "FromURL[UrlToImage] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( Icons[Column1] ), 
+    VAR ___f = FILTERS ( Icons[Column1] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, Icons[Column1] )
+    VAR ___d = CONCATENATEX ( ___t, Icons[Column1], ", " )
+    VAR ___x = "Icons[Column1] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( Icons[Column2] ), 
+    VAR ___f = FILTERS ( Icons[Column2] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, Icons[Column2] )
+    VAR ___d = CONCATENATEX ( ___t, Icons[Column2], ", " )
+    VAR ___x = "Icons[Column2] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( Icons[Column3] ), 
+    VAR ___f = FILTERS ( Icons[Column3] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, Icons[Column3] )
+    VAR ___d = CONCATENATEX ( ___t, Icons[Column3], ", " )
+    VAR ___x = "Icons[Column3] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( Icons[Column4] ), 
+    VAR ___f = FILTERS ( Icons[Column4] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, Icons[Column4] )
+    VAR ___d = CONCATENATEX ( ___t, Icons[Column4], ", " )
+    VAR ___x = "Icons[Column4] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( Parameter[Parameter Fields] ), 
+    VAR ___f = FILTERS ( Parameter[Parameter Fields] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, Parameter[Parameter Fields] )
+    VAR ___d = CONCATENATEX ( ___t, Parameter[Parameter Fields], ", " )
+    VAR ___x = "Parameter[Parameter Fields] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( Parameter[Parameter Order] ), 
+    VAR ___f = FILTERS ( Parameter[Parameter Order] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, Parameter[Parameter Order] )
+    VAR ___d = CONCATENATEX ( ___t, Parameter[Parameter Order], ", " )
+    VAR ___x = "Parameter[Parameter Order] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( 'Parameter 2'[Parameter Fields] ), 
+    VAR ___f = FILTERS ( 'Parameter 2'[Parameter Fields] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, 'Parameter 2'[Parameter Fields] )
+    VAR ___d = CONCATENATEX ( ___t, 'Parameter 2'[Parameter Fields], ", " )
+    VAR ___x = "'Parameter 2'[Parameter Fields] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( 'Parameter 2'[Parameter Order] ), 
+    VAR ___f = FILTERS ( 'Parameter 2'[Parameter Order] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, 'Parameter 2'[Parameter Order] )
+    VAR ___d = CONCATENATEX ( ___t, 'Parameter 2'[Parameter Order], ", " )
+    VAR ___x = "'Parameter 2'[Parameter Order] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( prmPeriod[prmPeriod] ), 
+    VAR ___f = FILTERS ( prmPeriod[prmPeriod] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, prmPeriod[prmPeriod] )
+    VAR ___d = CONCATENATEX ( ___t, prmPeriod[prmPeriod], ", " )
+    VAR ___x = "prmPeriod[prmPeriod] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( prmPeriod[prmPeriod Fields] ), 
+    VAR ___f = FILTERS ( prmPeriod[prmPeriod Fields] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, prmPeriod[prmPeriod Fields] )
+    VAR ___d = CONCATENATEX ( ___t, prmPeriod[prmPeriod Fields], ", " )
+    VAR ___x = "prmPeriod[prmPeriod Fields] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( prmPeriod[prmPeriod Order] ), 
+    VAR ___f = FILTERS ( prmPeriod[prmPeriod Order] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, prmPeriod[prmPeriod Order] )
+    VAR ___d = CONCATENATEX ( ___t, prmPeriod[prmPeriod Order], ", " )
+    VAR ___x = "prmPeriod[prmPeriod Order] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( 'Pseudo Channel Group'[Channel Group] ), 
+    VAR ___f = FILTERS ( 'Pseudo Channel Group'[Channel Group] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, 'Pseudo Channel Group'[Channel Group] )
+    VAR ___d = CONCATENATEX ( ___t, 'Pseudo Channel Group'[Channel Group], ", " )
+    VAR ___x = "'Pseudo Channel Group'[Channel Group] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( 'Pseudo Contract Term'[Contract Term] ), 
+    VAR ___f = FILTERS ( 'Pseudo Contract Term'[Contract Term] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, 'Pseudo Contract Term'[Contract Term] )
+    VAR ___d = CONCATENATEX ( ___t, 'Pseudo Contract Term'[Contract Term], ", " )
+    VAR ___x = "'Pseudo Contract Term'[Contract Term] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( 'Pseudo Location Group'[Location Group] ), 
+    VAR ___f = FILTERS ( 'Pseudo Location Group'[Location Group] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, 'Pseudo Location Group'[Location Group] )
+    VAR ___d = CONCATENATEX ( ___t, 'Pseudo Location Group'[Location Group], ", " )
+    VAR ___x = "'Pseudo Location Group'[Location Group] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( 'Pseudo Product Term'[Product Term] ), 
+    VAR ___f = FILTERS ( 'Pseudo Product Term'[Product Term] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, 'Pseudo Product Term'[Product Term] )
+    VAR ___d = CONCATENATEX ( ___t, 'Pseudo Product Term'[Product Term], ", " )
+    VAR ___x = "'Pseudo Product Term'[Product Term] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( 'Pseudo Sales Group'[Sales Group] ), 
+    VAR ___f = FILTERS ( 'Pseudo Sales Group'[Sales Group] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, 'Pseudo Sales Group'[Sales Group] )
+    VAR ___d = CONCATENATEX ( ___t, 'Pseudo Sales Group'[Sales Group], ", " )
+    VAR ___x = "'Pseudo Sales Group'[Sales Group] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( 'Table'[Channel Group] ), 
+    VAR ___f = FILTERS ( 'Table'[Channel Group] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, 'Table'[Channel Group] )
+    VAR ___d = CONCATENATEX ( ___t, 'Table'[Channel Group], ", " )
+    VAR ___x = "'Table'[Channel Group] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( 'Time Intelligence '[Ordinal] ), 
+    VAR ___f = FILTERS ( 'Time Intelligence '[Ordinal] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, 'Time Intelligence '[Ordinal] )
+    VAR ___d = CONCATENATEX ( ___t, 'Time Intelligence '[Ordinal], ", " )
+    VAR ___x = "'Time Intelligence '[Ordinal] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( 'Time Intelligence '[Time Intelligence] ), 
+    VAR ___f = FILTERS ( 'Time Intelligence '[Time Intelligence] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, 'Time Intelligence '[Time Intelligence] )
+    VAR ___d = CONCATENATEX ( ___t, 'Time Intelligence '[Time Intelligence], ", " )
+    VAR ___x = "'Time Intelligence '[Time Intelligence] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( 'Waffles Gen'[x] ), 
+    VAR ___f = FILTERS ( 'Waffles Gen'[x] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, 'Waffles Gen'[x] )
+    VAR ___d = CONCATENATEX ( ___t, 'Waffles Gen'[x], ", " )
+    VAR ___x = "'Waffles Gen'[x] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( 'Waffles Gen'[y] ), 
+    VAR ___f = FILTERS ( 'Waffles Gen'[y] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, 'Waffles Gen'[y] )
+    VAR ___d = CONCATENATEX ( ___t, 'Waffles Gen'[y], ", " )
+    VAR ___x = "'Waffles Gen'[y] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( 'Waffles Gen'[yx] ), 
+    VAR ___f = FILTERS ( 'Waffles Gen'[yx] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, 'Waffles Gen'[yx] )
+    VAR ___d = CONCATENATEX ( ___t, 'Waffles Gen'[yx], ", " )
+    VAR ___x = "'Waffles Gen'[yx] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( x_GSForecastLogo[ID] ), 
+    VAR ___f = FILTERS ( x_GSForecastLogo[ID] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, x_GSForecastLogo[ID] )
+    VAR ___d = CONCATENATEX ( ___t, x_GSForecastLogo[ID], ", " )
+    VAR ___x = "x_GSForecastLogo[ID] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( x_GSForecastLogo[ImageUrl] ), 
+    VAR ___f = FILTERS ( x_GSForecastLogo[ImageUrl] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, x_GSForecastLogo[ImageUrl] )
+    VAR ___d = CONCATENATEX ( ___t, x_GSForecastLogo[ImageUrl], ", " )
+    VAR ___x = "x_GSForecastLogo[ImageUrl] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( x_GSForecastLogo[LowerRange] ), 
+    VAR ___f = FILTERS ( x_GSForecastLogo[LowerRange] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, x_GSForecastLogo[LowerRange] )
+    VAR ___d = CONCATENATEX ( ___t, x_GSForecastLogo[LowerRange], ", " )
+    VAR ___x = "x_GSForecastLogo[LowerRange] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( x_GSForecastLogo[Name] ), 
+    VAR ___f = FILTERS ( x_GSForecastLogo[Name] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, x_GSForecastLogo[Name] )
+    VAR ___d = CONCATENATEX ( ___t, x_GSForecastLogo[Name], ", " )
+    VAR ___x = "x_GSForecastLogo[Name] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( x_GSForecastLogo[Percent] ), 
+    VAR ___f = FILTERS ( x_GSForecastLogo[Percent] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, x_GSForecastLogo[Percent] )
+    VAR ___d = CONCATENATEX ( ___t, x_GSForecastLogo[Percent], ", " )
+    VAR ___x = "x_GSForecastLogo[Percent] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( x_GSForecastLogo[UpperRange] ), 
+    VAR ___f = FILTERS ( x_GSForecastLogo[UpperRange] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, x_GSForecastLogo[UpperRange] )
+    VAR ___d = CONCATENATEX ( ___t, x_GSForecastLogo[UpperRange], ", " )
+    VAR ___x = "x_GSForecastLogo[UpperRange] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( xTablebuttons[color] ), 
+    VAR ___f = FILTERS ( xTablebuttons[color] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, xTablebuttons[color] )
+    VAR ___d = CONCATENATEX ( ___t, xTablebuttons[color], ", " )
+    VAR ___x = "xTablebuttons[color] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( xTablebuttons[H] ), 
+    VAR ___f = FILTERS ( xTablebuttons[H] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, xTablebuttons[H] )
+    VAR ___d = CONCATENATEX ( ___t, xTablebuttons[H], ", " )
+    VAR ___x = "xTablebuttons[H] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( xTablebuttons[hex] ), 
+    VAR ___f = FILTERS ( xTablebuttons[hex] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, xTablebuttons[hex] )
+    VAR ___d = CONCATENATEX ( ___t, xTablebuttons[hex], ", " )
+    VAR ___x = "xTablebuttons[hex] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( xTablebuttons[HHHELLPP] ), 
+    VAR ___f = FILTERS ( xTablebuttons[HHHELLPP] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, xTablebuttons[HHHELLPP] )
+    VAR ___d = CONCATENATEX ( ___t, xTablebuttons[HHHELLPP], ", " )
+    VAR ___x = "xTablebuttons[HHHELLPP] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( xTablebuttons[HSL Value] ), 
+    VAR ___f = FILTERS ( xTablebuttons[HSL Value] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, xTablebuttons[HSL Value] )
+    VAR ___d = CONCATENATEX ( ___t, xTablebuttons[HSL Value], ", " )
+    VAR ___x = "xTablebuttons[HSL Value] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( xTablebuttons[L] ), 
+    VAR ___f = FILTERS ( xTablebuttons[L] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, xTablebuttons[L] )
+    VAR ___d = CONCATENATEX ( ___t, xTablebuttons[L], ", " )
+    VAR ___x = "xTablebuttons[L] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+ & IF ( 
+    ISFILTERED ( xTablebuttons[S] ), 
+    VAR ___f = FILTERS ( xTablebuttons[S] ) 
+    VAR ___r = COUNTROWS ( ___f ) 
+    VAR ___t = TOPN ( MaxFilters, ___f, xTablebuttons[S] )
+    VAR ___d = CONCATENATEX ( ___t, xTablebuttons[S], ", " )
+    VAR ___x = "xTablebuttons[S] = " & ___d & IF(___r > MaxFilters, ", ... [" & ___r & " items selected]") & " " 
+    RETURN ___x & UNICHAR(13) & UNICHAR(10)
+)
+---- MODEL MEASURES END ----
+
