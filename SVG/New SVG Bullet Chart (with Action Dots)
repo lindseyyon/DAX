@@ -1,0 +1,117 @@
+New SVG Bullet Chart (with Action Dots) = 
+-- Use this inside of a Table or a Matrix visual.
+-- The 'Image size' property of the Table or Matrix should be set to a 'Height' of 25px and a 'Width' of 100px
+
+
+----------------------------------------------------------------------------------------
+-------------------- START CONFIG - SAFELY CHANGE STUFF IN THIS AREA -------------------
+----------------------------------------------------------------------------------------
+
+
+-- Input field config
+VAR _Actual = [# Total Quantity]
+VAR _Target = [# Max Value in Months]
+VAR _Performance = DIVIDE ( _Actual - _Target, _Target ) 
+
+
+-- Sentiment config (percent)
+VAR _VeryBad    = -0.25
+VAR _Bad        = -0.1
+VAR _Good       = 0.1
+VAR _VeryGood   = 0.25
+
+
+-- Chart Config
+VAR _BarMax = 100
+VAR _BarMin = 20
+VAR _Scope = ALL ( 'DateKey'[Year] )
+
+
+-- Color config.
+VAR _BackgroundColor = "#F5F5F5"                  -- Light grey
+VAR _BarFillColor  = "#CFCFCF"                    -- Medium grey
+VAR _BaselineColor = "#737373"                    -- Dark grey
+VAR _TargetColor = "black"                        -- Black
+
+VAR _ActionDotFill = 
+    SWITCH (
+        TRUE(),
+        _Performance < _VeryBad, "#f4ae4c",       -- Dark yellow
+        _Performance < _Bad, "#ffe075",           -- Light yellow
+        _Performance > _Good, "#74B2FF",          -- Light blue
+        _Performance > _VeryGood, "#2D6390",      -- Dark blue
+        "#FFFFFF00"                               -- Transparent
+    )
+
+
+----------------------------------------------------------------------------------------
+----------------------- END CONFIG - BEYOND HERE THERE BE DRAGONS ----------------------
+----------------------------------------------------------------------------------------
+
+
+    -- Get axis maximum
+    VAR _MaxActualsInScope = 
+        CALCULATE(
+            MAXX(
+                _Scope,
+                [# Total Quantity]
+            ),
+            REMOVEFILTERS( 'DateKey'[Year] )
+        )
+    
+    VAR _MaxTargetInScope = 
+        CALCULATE(
+            MAXX(
+                _Scope,
+                [# Max Value in Months]
+            ),
+            REMOVEFILTERS( 'DateKey'[Year] )
+        )
+    
+    VAR _AxisMax = 
+        IF (
+            HASONEVALUE ( 'DateKey'[Year] ),
+            MAX( _MaxActualsInScope, _MaxTargetInScope ),
+            CALCULATE( MAX( [# Total Quantity], [# Max Value in Months] ), REMOVEFILTERS( 'DateKey'[Year] ) )
+        ) * 1.1
+    
+    VAR _AxisRange = 
+        _BarMax - _BarMin
+
+    -- Normalize values (to get position along X-axis)
+    VAR _ActualNormalized = ( DIVIDE ( _Actual, _AxisMax ) * _AxisRange )
+    VAR _TargetNormalized = ( DIVIDE ( _Target, _AxisMax ) * _AxisRange ) + _BarMin - 1
+
+
+-- Vectors and SVG code
+VAR _SvgPrefix = "data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg'>"
+
+VAR _Sort = "<desc>" & FORMAT ( _Actual, "000000000000" ) & "</desc>"
+
+VAR _ActionDot  = "<circle cx='10' cy='11' r='5' fill='" & _ActionDotFill &"'/>"
+
+VAR _BarBaseline = "<rect x='" & _BarMin & "' y='4' width='1' height='60%' fill='" & _BaselineColor & "'/>"
+VAR _BarBackground = "<rect x='" & _BarMin & "' y='2' width='" & _BarMax & "' height='80%' fill='" & _BackgroundColor & "'/>"
+VAR _ActualBar  = "<rect x='" & _BarMin & "' y='5' width='" & _ActualNormalized & "' height='50%' fill='" & _BarFillColor & "'/>"
+VAR _TargetLine = "<rect x='" & _TargetNormalized & "' y='2' width='2' height='80%' fill='" & _TargetColor & "'/>"
+
+VAR _SvgSuffix = "</svg>"
+
+
+-- Final result
+VAR _SVG =
+    _SvgPrefix 
+
+    & _Sort
+
+    & _ActionDot
+
+    & _BarBackground
+    & _ActualBar
+    & _BarBaseline
+    & _TargetLine
+
+    & _SvgSuffix
+
+RETURN
+    _SVG
