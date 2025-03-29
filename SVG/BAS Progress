@@ -1,0 +1,38 @@
+SVG = 
+VAR Percentage = [Actual Skill Score]
+VAR ProgressWidth = ROUND(300 * Percentage / 100, 0)
+VAR ArrowCondition = [Year Score Difference]
+VAR SVG =
+    "data:image/svg+xml;utf8, <svg xmlns=""http://www.w3.org/2000/svg"" viewBox=""0 0 600 70""> //
+        <g>
+            <!-- Background bar (100% gray bar) -->
+            <rect x=""50"" y=""20"" width=""300"" height=""20"" rx=""10"" ry=""10"" fill=""#E0E0E0"" />
+            
+            <!-- Progress bar with dynamic width based on Percentage -->
+            <rect x=""50"" y=""20"" width=""" & FORMAT(ProgressWidth, "0") & """ height=""20"" rx=""10"" ry=""10"" fill=""#7161CE"" />
+            
+            <!-- Percentage label centered relative to the trend indicator -->
+            <text x=""420"" y=""35"" font-family=""Segoe UI"" font-size=""25"" fill=""#333333"" text-anchor=""middle"">" & FORMAT(Percentage, "0") & "%</text>
+            
+            <!-- Vertical separator line next to the percentage label -->
+            <line x1=""470"" y1=""5"" x2=""470"" y2=""50"" stroke=""#CCCCCC"" stroke-width=""2"" />
+            
+            " & 
+            IF(ArrowCondition > 0, // Condition to determine which trend indicator to show
+                "<g transform=""translate(530, 27)""> <!-- Centered position -->
+                    <!-- Trend indicator (green circle) -->
+                    <circle cx=""0"" cy=""0"" r=""16"" fill=""#5DD7AA"" />
+                    <!-- Custom upward arrow -->
+                    <polyline points=""-8,6 0,-8 8,6 0,1 -8,6"" fill=""white"" stroke=""white"" stroke-width=""2"" stroke-linecap=""round"" stroke-linejoin=""round"" />
+                </g>",
+                "<g transform=""translate(530, 27)""> <!-- Centered position -->
+                    <!-- Trend indicator (red circle) -->
+                    <circle cx=""0"" cy=""0"" r=""16"" fill=""#D75DA7"" />
+                    <!-- Custom downward arrow -->
+                    <polyline points=""-8,-6 0,8 8,-6 0,-1 -8,-6"" fill=""white"" stroke=""white"" stroke-width=""2"" stroke-linecap=""round"" stroke-linejoin=""round"" />
+                </g>"
+            ) & "
+        </g>
+    </svg>"
+
+RETURN SVG 
