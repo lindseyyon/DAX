@@ -1,0 +1,16 @@
+relationship 27eead2b-53ea-4472-b966-8deef4329bba
+	fromColumn: Sales.ProdID
+	toColumn: Product.ProdID
+
+relationship 4707533c-70a5-4cba-9227-1775758f6080
+	fromColumn: Sales.OrderDate
+	toColumn: Calendar.Date
+
+relationship 1fc33b6f-e727-42c2-a524-a9fa8c387d6c
+	fromColumn: Sales.Manufacturer
+	toColumn: Company.Manufacturer
+
+relationship 510350e1-480c-44cf-8e13-ff8e8adc7475
+	fromColumn: Sales.Color
+	toColumn: Color.Color
+

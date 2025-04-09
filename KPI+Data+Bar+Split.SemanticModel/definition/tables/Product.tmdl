@@ -1,0 +1,91 @@
+table Product
+	lineageTag: 3bdfd223-921f-4e19-83bb-edaa1c971331
+
+	column ProductDescription
+		dataType: string
+		lineageTag: aaaad6be-e341-4a76-b296-f5d33800d8f8
+		summarizeBy: none
+		sourceColumn: ProductDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sub Category'
+		dataType: string
+		isHidden
+		lineageTag: 27f0ca45-ab1d-4ddb-abd1-a02fdedd347f
+		summarizeBy: none
+		sourceColumn: Sub Category
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_ChangedProperties = ["IsHidden"]
+
+	column Category
+		dataType: string
+		isHidden
+		lineageTag: e22c2656-0af6-4f33-a2e4-cd6c7a2dd8f6
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_ChangedProperties = ["IsHidden"]
+
+	column ProductName
+		dataType: string
+		isHidden
+		lineageTag: a0313d13-2e38-4f69-a889-b13870da29af
+		summarizeBy: none
+		sourceColumn: ProductName
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_ChangedProperties = ["IsHidden"]
+
+	column ProdID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 62d91776-5ab7-4943-a10a-b5bc92f4913a
+		summarizeBy: none
+		sourceColumn: ProdID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_ChangedProperties = ["IsHidden"]
+
+	hierarchy 'Product Hierarchy'
+		lineageTag: 1ac2febb-8a7d-40f2-a73a-ea4664fff0e8
+
+		level Category
+			lineageTag: 00bc4805-cff0-423d-a298-4571c09a94e5
+			column: Category
+
+		level 'Sub Category'
+			lineageTag: 5a7442d0-5971-42e4-bbca-a838396fb64c
+			column: 'Sub Category'
+
+		level Name
+			lineageTag: 66178565-7d85-4611-81d8-bbdafb8c8e39
+			column: ProductName
+
+	partition Product-aa41b3c4-090a-468b-bccd-ca284d6ae596 = m
+		mode: import
+		queryGroup: 'Load to Data Model\Dimension Tables'
+		source =
+				let
+				    Source = #"Data Source",
+				    Sales_Table = Source{[Item="Sales",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(Sales_Table,{{"SalesOrderID", type text}, {"Country", type text}, {"OrderDate", type date}, {"SalesChannelCode", type text}, {"ProdID", Int64.Type}, {"StyleName", type text}, {"CustomerAccountNumber", type text}, {"StoreKey", type any}, {"ProductLabel", Int64.Type}, {"ProductDescription", type text}, {"Manufacturer", type text}, {"Brand Name", type text}, {"Class", type text}, {"Color", type text}, {"StockType", type text}, {"Units", Int64.Type}, {"Sales Amount", Int64.Type}, {"NSAT", Int64.Type}, {"SubCategory", type text}, {"Category", type text}, {"Sale Size", type text}, {"ProductName", type text}, {"Unit Cost", type number}, {"Unit Price", type number}, {"SalesTax", type number}, {"Freight", type number}, {"PurchAgain", Int64.Type}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"StyleName", "Style Name"}}),
+				    #"Filtered to 2013 or Later" = Table.SelectRows(#"Renamed Columns", each [OrderDate] >= #date(2013, 1, 1)),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Filtered to 2013 or Later",{"ProdID", "ProductDescription", "SubCategory", "Category", "ProductName"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns"),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Removed Duplicates",{{"SubCategory", "Sub Category"}})
+				in
+				    #"Renamed Columns1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

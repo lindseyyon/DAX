@@ -1,0 +1,12 @@
+expression 'Data Source' =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\haven\Dropbox\Documents\Havens Consulting\Videos\Recorded\Waterfall Breakdown Comparison\Files\Data.xlsx"), null, true)
+		in
+		    Source
+	lineageTag: 360df2a7-bef4-44c3-bc86-0b6ab1edfb94
+	queryGroup: 'Data Sources'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "KPI+Data+Bar+Split"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "426ac4b3-ca09-a0e3-4d9c-194d6adc95ce"
+  }
+}

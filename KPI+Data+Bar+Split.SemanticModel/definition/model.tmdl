@@ -1,0 +1,47 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup 'Data Sources'
+
+	annotation PBI_QueryGroupOrder = 2
+
+queryGroup 'Load to Data Model'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Load to Data Model\Fact Tables'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Load to Data Model\Dimension Tables'
+
+	annotation PBI_QueryGroupOrder = 1
+
+queryGroup 'Load to Data Model\Disconnected Tables'
+
+	annotation PBI_QueryGroupOrder = 2
+
+queryGroup 'Staging Tables'
+
+	annotation PBI_QueryGroupOrder = 1
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBIDesktopVersion = 2.112.1161.0 (22.12)
+
+annotation PBI_QueryOrder = ["Sales","Data Source","DAX","Product","Company","Color"]
+
+ref table Calendar
+ref table Sales
+ref table DAX
+ref table Product
+ref table Company
+ref table Color
+
+ref cultureInfo en-US
+

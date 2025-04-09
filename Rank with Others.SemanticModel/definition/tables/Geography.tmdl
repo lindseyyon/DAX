@@ -1,0 +1,41 @@
+table Geography
+	lineageTag: 6d49d169-d277-476f-90f7-13c92f656b2a
+
+	column 'City Id'
+		dataType: int64
+		formatString: 0
+		lineageTag: 71a93494-aca8-4d69-ade0-ae9f61bf028f
+		summarizeBy: none
+		sourceColumn: City Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: d4389555-7d41-48dd-be23-43c0c6a68a27
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: e114862a-b964-4ec8-a945-bce88732fbae
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Geography-11c947a7-024a-4039-8d5d-015b305cd330 = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\Amit.Chandak\Google Drive\Kanerika\power bi\Data\sales_data_config1.xlsx"), null, true),
+				    Geography_Sheet = Source{[Item="Geography",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Geography_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"City Id", Int64.Type}, {"City", type text}, {"State#(tab)#(tab)", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

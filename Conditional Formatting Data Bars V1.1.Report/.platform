@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Conditional Formatting Data Bars V1.1"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "055642c4-81b8-8298-4ca6-17e6fbbb4f75"
+  }
+}

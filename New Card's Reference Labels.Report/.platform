@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "New Card's Reference Labels"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "6266c9a1-619d-bc32-47be-cb57b21bb711"
+  }
+}

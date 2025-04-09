@@ -1,0 +1,115 @@
+table Measure
+	lineageTag: 2418302f-e8e9-4ab7-8b77-6eb8d415affb
+
+	measure 'Net 80' = ```
+			sum(Sales[Net Sales]) *.8 
+			```
+		lineageTag: 23ad22ef-8532-49ce-91a5-60af02b4e571
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Discount %' = DIVIDE([Discount],[Gross])
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Base
+		lineageTag: 00e18d07-e40a-49f5-b83b-40056e074d6e
+
+		annotation PBI_ChangedProperties = ["FormatString"]
+
+	measure Margin = [Net] - [COGS]
+		displayFolder: Base
+		lineageTag: 1385c376-6b42-4329-bb4a-c7c552d6f793
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Margin %' = DIVIDE([Margin],[Net])
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Base
+		lineageTag: 0d6bb699-db1c-4e30-a51a-e8e5f012d923
+
+		annotation PBI_ChangedProperties = ["FormatString"]
+
+	measure Net = Sum(Sales[Net Sales])
+		displayFolder: Base
+		lineageTag: f044f97c-fc9b-47d6-9c06-05741cc95577
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sample Period' = CALCULATE([Net], SAMEPERIODLASTYEAR('Date'[Date]))
+		lineageTag: 9cf733f3-b6a2-4a79-a6dd-2fd13d6ee8f7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure COGS = SUM(Sales[COGS Amount])
+		formatString: 0
+		displayFolder: Base
+		lineageTag: 679fcb04-019a-4da2-a04f-abddbfa5957d
+
+	measure Gross = SUM(Sales[Gross Sales])
+		formatString: 0
+		displayFolder: Base
+		lineageTag: d8451de8-2bb6-4291-86a7-633b9fa1c8a2
+
+	measure Rank = ```
+			RANKX(ALL(Geography[City]), [Gross]) 
+			```
+		formatString: 0
+		lineageTag: 9ea84bfe-2567-4825-b6f1-feadde3b4dcd
+
+	measure 'Rank Others' = if([Rank] <=10, [Rank]& "", "Others")
+		lineageTag: fae01b5e-cf7b-49e4-b808-785cdd76b83d
+
+	measure 'Purchase Brand' = CALCULATE( CONCATENATEX(values('Item'[Brand]),'Item'[Brand]," , "), filter(Sales, not(isblank(Sales[Gross Sales]))))
+		lineageTag: f4e6edfe-af2d-41b8-9f8d-1719ee6b76f7
+
+	measure 'Has Both' = ```
+			var _cnt = CALCULATE( DISTINCTCOUNT('Item'[Brand]), ALLSELECTED('Item')) 
+			return countx(filter( SUMMARIZE(Sales,Customer[Name], "_1",  calculate(DISTINCTCOUNT('Item'[Brand]), filter(Sales, not(ISBLANK(Sales[Gross Sales])) )) ) , [_1] = _cnt),[Name])
+			
+			
+			//sumx(values(Customer[Name]),  if( _cnt = calculate(DISTINCTCOUNT('Item'[Brand]), filter(Sales, not(ISBLANK(Sales[Gross Sales])) )),1,blank()) )
+			```
+		formatString: 0
+		lineageTag: 1118306f-6c2f-4ab6-bb3a-77c731188f60
+
+	measure 'Has Both cate' = ```
+			var _cnt = CALCULATE( DISTINCTCOUNT('Item'[Brand]), ALLSELECTED('Item')) 
+			return countx(filter( SUMMARIZE(Sales,'Item'[Category], "_1",  calculate(DISTINCTCOUNT('Item'[Brand]), filter(Sales, not(ISBLANK(Sales[Gross Sales])) )) ) , [_1] = _cnt),[Category])
+			```
+		formatString: 0
+		lineageTag: ed8d354c-6995-4ea2-86c4-564433341303
+
+	column 'Measure Name'
+		dataType: string
+		isHidden
+		lineageTag: 2ceeb82e-b192-4d4e-9ad2-e1905e659c36
+		summarizeBy: none
+		sourceColumn: Measure Name
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_ChangedProperties = ["IsHidden"]
+
+	column Desc
+		dataType: string
+		isHidden
+		lineageTag: ca09aa61-f7d7-40c7-b113-492e5599791a
+		summarizeBy: none
+		sourceColumn: Desc
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_ChangedProperties = ["IsHidden"]
+
+	partition Measure-052e5c08-7487-4ebe-8889-fcad9188e832 = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45W8g1xUdJR8s3PK8lQCMnMyVFwSSxJVYrViVYKBMsElhShiUeCxSNTE1EkYgE=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Measure Name" = _t, Desc = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Measure Name", type text}, {"Desc", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_ChangedProperties = ["Name"]
+

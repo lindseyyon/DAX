@@ -1,0 +1,36 @@
+table Company
+	lineageTag: 16d0308a-59c7-43be-9a7e-94cfa5996b7d
+
+	column Manufacturer
+		dataType: string
+		lineageTag: 62c91773-6076-46a7-a960-dd081271a69e
+		summarizeBy: none
+		sourceColumn: Manufacturer
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Brand Name'
+		dataType: string
+		lineageTag: 3541a719-e7bd-4191-a64f-fee69eb6a9d8
+		summarizeBy: none
+		sourceColumn: Brand Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Company-0cb98103-582f-4571-a7d1-8c0377e35dec = m
+		mode: import
+		queryGroup: 'Load to Data Model\Dimension Tables'
+		source =
+				let
+				    Source = #"Data Source",
+				    Sales_Table = Source{[Item="Sales",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(Sales_Table,{{"SalesOrderID", type text}, {"Country", type text}, {"OrderDate", type date}, {"SalesChannelCode", type text}, {"ProdID", Int64.Type}, {"StyleName", type text}, {"CustomerAccountNumber", type text}, {"StoreKey", type any}, {"ProductLabel", Int64.Type}, {"ProductDescription", type text}, {"Manufacturer", type text}, {"Brand Name", type text}, {"Class", type text}, {"Color", type text}, {"StockType", type text}, {"Units", Int64.Type}, {"Sales Amount", Int64.Type}, {"NSAT", Int64.Type}, {"SubCategory", type text}, {"Category", type text}, {"Sale Size", type text}, {"ProductName", type text}, {"Unit Cost", type number}, {"Unit Price", type number}, {"SalesTax", type number}, {"Freight", type number}, {"PurchAgain", Int64.Type}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"StyleName", "Style Name"}}),
+				    #"Filtered to 2013 or Later" = Table.SelectRows(#"Renamed Columns", each [OrderDate] >= #date(2013, 1, 1)),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Filtered to 2013 or Later",{"Manufacturer", "Brand Name"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns")
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,5 @@
+relationship 801e1284-1e47-48e0-add8-225b4f347870
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Onyx Data -DataDNA Dataset Chal'.Date
+	toColumn: LocalDateTable_a7cd50ea-8888-424f-8f3a-759bb9754bb2.Date
+

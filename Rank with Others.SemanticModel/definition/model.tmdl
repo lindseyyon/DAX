@@ -1,0 +1,33 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBIDesktopVersion = 2.111.590.0 (22.11)
+
+annotation PBI_QueryOrder = ["Customer","Sales","Item","Geography","Measure","Parameter1","KPI"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+ref table DateTableTemplate_c43245dc-b014-4dc7-889e-8069ef119566
+ref table Customer
+ref table Sales
+ref table LocalDateTable_f66747a7-19f7-45f8-9870-f1b2e5b8e2ee
+ref table Item
+ref table Geography
+ref table Date
+ref table LocalDateTable_d1e1378f-a1b9-410f-9a7a-9b0783b56c73
+ref table LocalDateTable_1f9b9c08-940b-4d9c-89ec-f0e08c17bd24
+ref table Measure
+ref table KPI
+ref table 'Brand All'
+ref table Parameter
+
+ref role Category
+ref role User
+
+ref cultureInfo en-US
+

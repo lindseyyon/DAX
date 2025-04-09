@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Fluent Icons"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "9496f33b-f5a4-ac75-47ba-b74fe2816948"
+  }
+}

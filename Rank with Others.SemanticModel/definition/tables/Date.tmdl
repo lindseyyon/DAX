@@ -1,0 +1,117 @@
+table Date
+	lineageTag: 42d2c14d-98f3-4932-8f07-f41e2897ec57
+	dataCategory: Time
+
+	column Date
+		isKey
+		formatString: Short Date
+		lineageTag: 99db7b94-d97c-459b-9429-a8d7958b4039
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_ChangedProperties = ["FormatString"]
+
+	column 'Month Year'
+		lineageTag: 2ed6a83d-4f01-4216-86c8-d39aafc45c0f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month Year]
+		sortByColumn: 'Month Year sort'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_ChangedProperties = ["SortByColumn"]
+
+	column 'Month Year sort'
+		lineageTag: ad1585c1-2876-4e32-87fa-4050f7bbfc41
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month Year sort]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		formatString: 0
+		lineageTag: b4f1a012-91e9-4bfa-9106-a646655ae9d7
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Qtr Year'
+		lineageTag: ff1cc999-51c6-4266-989a-0aca7ad7c442
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Qtr Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Week Year' = ```
+			
+			var _year = if(month([date])>=4,year([date]),year([date])-1)	
+			return 		
+			minx(filter( 'Date', year([Date]) =_year && month([date]) =4 && weekday([date],2) =1),[Date])
+			```
+		formatString: General Date
+		lineageTag: eb58ef6a-bba2-472d-b81d-ed2c08f998d6
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'week No' = quotient(datediff([Week Year],[date],day),7)+1
+		formatString: 0
+		lineageTag: dfd725c1-9727-45de-a471-4e57fca5aaac
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column WeekDay
+		lineageTag: 20a8b971-046a-490b-9812-f75e03b6946f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [WeekDay]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		lineageTag: 7d3da9f6-7f1f-4c50-a3b7-d77097662aff
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month]
+		sortByColumn: 'Month sort'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_ChangedProperties = ["SortByColumn"]
+
+	column 'Month sort'
+		lineageTag: 017ce003-5263-4c10-afd2-873bdefc2a46
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month sort]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Date-166d560e-32db-43b2-9b9c-2b34bc46297e = calculated
+		mode: import
+		source = ```
+				ADDCOLUMNS(CALENDAR(date(2018,01,01), date(2020,10,31))
+				,"Month Year", FORMAT([Date], "MMM-YYYY")
+				,"Month Year sort", FORMAT([Date], "YYYYMM")
+				, "Year", YEAR([Date])
+				,"Qtr Year" ,FORMAT([Date],"YYYY\QQ"),
+				"WeekDay", FORMAT([Date], "ddd")
+				,"Month", FORMAT([Date], "MMM")
+				,"Month sort", FORMAT([Date], "MM")
+				)
+				
+				
+				
+				```
+
+	annotation PBI_Id = ef261e06521f457cbba67500e2d7f9cb
+

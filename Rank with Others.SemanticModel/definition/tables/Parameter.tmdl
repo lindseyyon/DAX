@@ -1,0 +1,26 @@
+table Parameter
+	lineageTag: ef93a933-9f45-4879-8335-e487ced76f9d
+
+	measure 'Parameter Value' = SELECTEDVALUE('Parameter'[Parameter], 5)
+		formatString: 0
+		lineageTag: 52f70255-8973-49ec-8568-8f7663c51aaf
+
+	column Parameter
+		formatString: 0
+		lineageTag: b1712cdf-f628-496d-b35f-96f444fb0db0
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition Parameter-a9dac40f-b8f6-4ea5-88aa-1a1ebd623307 = calculated
+		mode: import
+		source = GENERATESERIES(0, 20, 1)
+
+	annotation PBI_Id = 6cad2b7d4bd7465d817aae4a0d17b130
+

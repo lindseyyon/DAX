@@ -1,0 +1,29 @@
+table 'Y Axis Selection'
+	lineageTag: 095aedf7-01f7-467a-afcd-33cb64e1837e
+
+	column Type
+		dataType: string
+		lineageTag: 17f6bbd9-6ac9-4170-b8d1-48ae852347f7
+		summarizeBy: none
+		sourceColumn: Type
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_ChangedProperties = ["IsHidden"]
+
+	partition 'Y Axis Selection-4343bed8-55ed-430a-bc6e-3aefc2c74316' = m
+		mode: import
+		queryGroup: 'Load to Data Model\Disconnected Tables'
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WcqnMS8zNTFaK1YlWikotyleKjQUA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Type = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Type", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ChangedProperties = ["IsHidden"]
+

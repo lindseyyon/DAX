@@ -1,0 +1,51 @@
+{
+  "config": "{\"version\":\"5.57\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU08\",\"version\":\"5.57\",\"type\":2}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":0,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true,\"useEnhancedTooltips\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY24SU08",
+            "path": "BaseThemes/CY24SU08.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{}",
+      "displayName": "Page 1",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "3a7c1c826bc273f8a829",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"1dcf3e0c6d5a92574b6a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":114.99092558983666,\"y\":59.23774954627949,\"z\":1,\"width\":299.6733212341198,\"height\":538.9473684210526,\"tabOrder\":1}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Material UI icons.icon name\"},{\"queryRef\":\"Material UI icons.icon image url\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"m\",\"Entity\":\"Material UI icons\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"icon name\"},\"Name\":\"Material UI icons.icon name\",\"NativeReferenceName\":\"icon name\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"icon image url\"},\"Name\":\"Material UI icons.icon image url\",\"NativeReferenceName\":\"icon image url\"}]},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 538.95,
+          "width": 299.67,
+          "x": 114.99,
+          "y": 59.24,
+          "z": 1.00
+        },
+        {
+          "config": "{\"name\":\"95f6403c8034961eea33\",\"layouts\":[{\"id\":0,\"position\":{\"x\":689.9455535390199,\"y\":227.65880217785843,\"z\":0,\"width\":279.92740471869325,\"height\":142.86751361161524,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"cardVisual\",\"projections\":{\"Data\":[{\"queryRef\":\"Material UI icons.Blank\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"m\",\"Entity\":\"Material UI icons\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"Blank\"},\"Name\":\"Material UI icons.Blank\",\"NativeReferenceName\":\"Blank\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"Blank\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"image\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"imageType\":{\"expr\":{\"Literal\":{\"Value\":\"'imageUrl'\"}}},\"imageUrl\":{\"expr\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Material UI icons\"}},\"Property\":\"Icon\"}}},\"size\":{\"expr\":{\"Literal\":{\"Value\":\"100L\"}}}},\"selector\":{\"id\":\"default\"}}]}}}",
+          "filters": "[]",
+          "height": 142.87,
+          "width": 279.93,
+          "x": 689.95,
+          "y": 227.66,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}

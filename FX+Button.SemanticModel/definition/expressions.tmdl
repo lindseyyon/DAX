@@ -1,0 +1,57 @@
+expression 'Data Source' =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\haven\Dropbox\Documents\Havens Consulting\Videos\Recorded\Waterfall Breakdown Comparison\Files\Data.xlsx"), null, true)
+		in
+		    Source
+	lineageTag: 360df2a7-bef4-44c3-bc86-0b6ab1edfb94
+	queryGroup: 'Data Sources'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'Product (Stacked)' =
+		let
+		    Source = Product,
+		    #"Removed Other Columns" = Table.SelectColumns(Source,{"Category"}),
+		    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns"),
+		    #"Renamed Columns" = Table.RenameColumns(#"Removed Duplicates",{{"Category", "Metric"}}),
+		    #"Added Selection" = Table.AddColumn(#"Renamed Columns", "Selection", each "Category")
+		in
+		    #"Added Selection"
+	lineageTag: 518a733a-7820-4837-80b2-644de61ac38e
+	queryGroup: 'Staging Tables\Stacked'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'Company (Stacked)' =
+		let
+		    Source = Company,
+		    #"Removed Other Columns" = Table.SelectColumns(Source,{"Brand Name"}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Removed Other Columns",{{"Brand Name", "Metric"}}),
+		    #"Added Selection" = Table.AddColumn(#"Renamed Columns", "Selection", each "Company")
+		in
+		    #"Added Selection"
+	lineageTag: 5e24dcc2-698b-4649-b82d-3fdfe8ad50ea
+	queryGroup: 'Staging Tables\Stacked'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'Color (Stacked)' =
+		let
+		    Source = Color,
+		    #"Renamed Columns" = Table.RenameColumns(Source,{{"Color", "Metric"}}),
+		    #"Added Selection" = Table.AddColumn(#"Renamed Columns", "Selection", each "Color")
+		in
+		    #"Added Selection"
+	lineageTag: f9c8b6eb-e028-4b43-8d07-77e00ca1b513
+	queryGroup: 'Staging Tables\Stacked'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

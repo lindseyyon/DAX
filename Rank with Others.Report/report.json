@@ -1,0 +1,130 @@
+{
+  "config": "{\"version\":\"5.32\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY20SU09\",\"version\":\"5.16\",\"type\":2},\"customTheme\":{\"name\":\"Innovate7616120619989475.json\",\"version\":\"5.30\",\"type\":1}},\"activeSectionIndex\":1,\"bookmarks\":[{\"displayName\":\"Category\",\"name\":\"Bookmark9ebf49f8d37da592c62e\",\"explorationState\":{\"version\":\"1.3\",\"activeSection\":\"ReportSectione018e26d6ae79c5c36e2\",\"sections\":{\"ReportSectione018e26d6ae79c5c36e2\":{\"visualContainers\":{}}},\"objects\":{\"merge\":{\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}},\"options\":{\"targetVisualNames\":[]}},{\"displayName\":\"Sub Caregory\",\"name\":\"Bookmarkdf6fe0c18a23de8d4450\",\"explorationState\":{\"version\":\"1.3\",\"activeSection\":\"ReportSectione018e26d6ae79c5c36e2\",\"sections\":{\"ReportSectione018e26d6ae79c5c36e2\":{\"visualContainers\":{}}},\"objects\":{\"merge\":{\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}},\"options\":{\"targetVisualNames\":[]}},{\"displayName\":\"Brand\",\"name\":\"Bookmark5622c4830c96de0110cd\",\"explorationState\":{\"version\":\"1.3\",\"activeSection\":\"ReportSectione018e26d6ae79c5c36e2\",\"sections\":{\"ReportSectione018e26d6ae79c5c36e2\":{\"visualContainers\":{}}},\"objects\":{\"merge\":{\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}},\"options\":{\"targetVisualNames\":[]}}],\"defaultDrillFilterOtherVisuals\":true,\"slowDataSourceSettings\":{\"isCrossHighlightingDisabled\":false,\"isSlicerSelectionsButtonEnabled\":false,\"isFilterSelectionsButtonEnabled\":false,\"isFieldWellButtonEnabled\":false,\"isApplyAllButtonEnabled\":false},\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"exportDataMode\":1,\"allowDataPointLassoSelect\":true,\"pauseQueries\":false},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}],\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "publicCustomVisuals": [
+    "TornadoChart1452517688218"
+  ],
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY20SU09",
+            "path": "BaseThemes/CY20SU09.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    },
+    {
+      "resourcePackage": {
+        "items": [
+          {
+            "name": "Background_image_127170501268447955.png",
+            "path": "Background_image_127170501268447955.png",
+            "type": 100
+          },
+          {
+            "name": "Innovate7616120619989475.json",
+            "path": "Innovate7616120619989475.json",
+            "type": 100
+          },
+          {
+            "name": "abstract_thesis_ew9840911532493619.png",
+            "path": "abstract_thesis_ew9840911532493619.png",
+            "type": 100
+          }
+        ],
+        "name": "RegisteredResources",
+        "type": 1
+      }
+    },
+    {
+      "resourcePackage": {
+        "items": [
+          {
+            "name": "PBI_CV_16948668_E17D_454B_8664_2F2C470EA8C1.pbiviz.json",
+            "path": "PBI_CV_16948668_E17D_454B_8664_2F2C470EA8C1.pbiviz.json",
+            "type": 5
+          }
+        ],
+        "name": "PBI_CV_16948668_E17D_454B_8664_2F2C470EA8C1",
+        "type": 0
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{\"objects\":{\"background\":[{\"properties\":{\"image\":{\"image\":{\"name\":{\"expr\":{\"Literal\":{\"Value\":\"'Background image 1.png'\"}}},\"url\":{\"expr\":{\"ResourcePackageItem\":{\"PackageName\":\"RegisteredResources\",\"PackageType\":1,\"ItemName\":\"Background_image_127170501268447955.png\"}}},\"scaling\":{\"expr\":{\"Literal\":{\"Value\":\"'Normal'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]}}",
+      "displayName": "Series",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "ReportSection45a691059afb72689e22",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"a88070335f7aa11456f8\",\"layouts\":[{\"id\":0,\"position\":{\"x\":10.078740157480315,\"y\":0,\"z\":0,\"width\":1269.9212598425197,\"height\":720.6299212598425}}],\"singleVisual\":{\"visualType\":\"image\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"imageUrl\":{\"expr\":{\"ResourcePackageItem\":{\"PackageName\":\"RegisteredResources\",\"PackageType\":1,\"ItemName\":\"abstract_thesis_ew9840911532493619.png\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 720.63,
+          "width": 1269.92,
+          "x": 10.08,
+          "y": 0.00,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Page 1",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "ReportSection67c377302b7c536ed916",
+      "ordinal": 1,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"02fc1c1dce3d81574b8d\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1083.6051502145922,\"y\":203.26180257510728,\"z\":1000,\"width\":184.0343347639485,\"height\":516.3948497854077}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Item.Brand\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"i\",\"Entity\":\"Item\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"i\"}},\"Property\":\"Brand\"},\"Name\":\"Item.Brand\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"i\",\"Entity\":\"Item\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"i\"}},\"Property\":\"Brand\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'Brand 10'\"}}],[{\"Literal\":{\"Value\":\"'Brand 11'\"}}],[{\"Literal\":{\"Value\":\"'Brand 12'\"}}],[{\"Literal\":{\"Value\":\"'Brand 13'\"}}],[{\"Literal\":{\"Value\":\"'Brand 2'\"}}],[{\"Literal\":{\"Value\":\"'Brand 3'\"}}],[{\"Literal\":{\"Value\":\"'Brand 4'\"}}]]}}}]}}}}]}}}",
+          "filters": "[]",
+          "height": 516.39,
+          "width": 184.03,
+          "x": 1083.61,
+          "y": 203.26,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"13ecf8fd937cc0562631\",\"layouts\":[{\"id\":0,\"position\":{\"x\":611.1587982832618,\"y\":203.26180257510728,\"z\":3000,\"width\":431.24463519313304,\"height\":516.3948497854077}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Brand All.All Brand\"},{\"queryRef\":\"Brand All.Topn + Other\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"b\",\"Entity\":\"Brand All\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"b\"}},\"Property\":\"All Brand\"},\"Name\":\"Brand All.All Brand\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"b\"}},\"Property\":\"Topn + Other\"},\"Name\":\"Brand All.Topn + Other\"}]},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 516.39,
+          "width": 431.24,
+          "x": 611.16,
+          "y": 203.26,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"57731790ecc166006120\",\"layouts\":[{\"id\":0,\"position\":{\"x\":46.69527896995708,\"y\":0,\"z\":2000,\"width\":661.9742489270386,\"height\":124.97854077253218}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Parameter.Parameter\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"Parameter\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"Parameter\"},\"Name\":\"Parameter.Parameter\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"numericStart\":{\"expr\":{\"Literal\":{\"Value\":\"5D\"}}}}}],\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"Parameter\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"Parameter\"}},\"Right\":{\"Literal\":{\"Value\":\"5D\"}}}}}]}}}}]}}}",
+          "filters": "[]",
+          "height": 124.98,
+          "width": 661.97,
+          "x": 46.70,
+          "y": 0.00,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"f63b7de24068a7b20a5b\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":203.26180257510728,\"z\":0,\"width\":567.2103004291845,\"height\":516.3948497854077}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Brand All.All Brand\"},{\"queryRef\":\"Measure.Net\"},{\"queryRef\":\"Brand All.Rank Brand\"},{\"queryRef\":\"Brand All.Topn + Other\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"b\",\"Entity\":\"Brand All\",\"Type\":0},{\"Name\":\"m\",\"Entity\":\"Measure\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"b\"}},\"Property\":\"All Brand\"},\"Name\":\"Brand All.All Brand\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"Net\"},\"Name\":\"Measure.Net\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"b\"}},\"Property\":\"Rank Brand\"},\"Name\":\"Brand All.Rank Brand\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"b\"}},\"Property\":\"Topn + Other\"},\"Name\":\"Brand All.Topn + Other\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"Net\"}}}]},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 516.39,
+          "width": 567.21,
+          "x": 0.00,
+          "y": 203.26,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ],
+  "theme": "Innovate7616120619989475.json"
+}

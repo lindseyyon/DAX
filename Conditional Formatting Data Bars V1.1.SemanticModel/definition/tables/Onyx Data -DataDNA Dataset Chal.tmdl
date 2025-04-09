@@ -1,0 +1,284 @@
+table 'Onyx Data -DataDNA Dataset Chal'
+	lineageTag: 1e486a3c-d8e6-4ded-8177-c73af81ec38d
+
+	column TransactionID
+		dataType: int64
+		formatString: 0
+		lineageTag: d829e532-e6c6-478c-ab29-ab15b7cf65fb
+		summarizeBy: count
+		sourceColumn: TransactionID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 955ecc61-a8be-4a6c-9b36-3fcb650f3fc6
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: 801e1284-1e47-48e0-add8-225b4f347870
+			defaultHierarchy: LocalDateTable_a7cd50ea-8888-424f-8f3a-759bb9754bb2.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Time
+		dataType: dateTime
+		formatString: hh:nn:ss
+		lineageTag: 0e8f74a6-db71-4d14-a425-2210c6ef9853
+		summarizeBy: none
+		sourceColumn: Time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column CustomerID
+		dataType: int64
+		formatString: 0
+		lineageTag: 1599adce-1b13-4e6d-81c1-f7643240a925
+		summarizeBy: count
+		sourceColumn: CustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age
+		dataType: int64
+		formatString: 0
+		lineageTag: 66580364-77bf-449b-a852-e6cbd474d375
+		summarizeBy: sum
+		sourceColumn: Age
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender
+		dataType: string
+		lineageTag: dbc1baf5-2a40-4ad8-b9ff-a3d8ed6d7a60
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column Location
+		dataType: string
+		lineageTag: b85f3133-dab3-4527-9070-fa508056f094
+		summarizeBy: none
+		sourceColumn: Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column StoreID
+		dataType: int64
+		formatString: 0
+		lineageTag: be55ce03-1c22-4913-a9b0-ca2d5bde3254
+		summarizeBy: count
+		sourceColumn: StoreID
+
+		annotation SummarizationSetBy = Automatic
+
+	column OnlineOrderFlag
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 815ef9d5-bc60-41db-98c2-755a564a914a
+		summarizeBy: none
+		sourceColumn: OnlineOrderFlag
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductID
+		dataType: int64
+		formatString: 0
+		lineageTag: 3cf57c2c-95a5-432e-bb2a-81e35aee704e
+		summarizeBy: count
+		sourceColumn: ProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductName
+		dataType: string
+		lineageTag: ff965ce3-714c-4eff-980d-2728df64fbd9
+		summarizeBy: none
+		sourceColumn: ProductName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: 6f13a306-060c-41bb-87ce-88e5538d6216
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: de9b5d63-85ad-477e-a5c1-8fc20e23e20e
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitPrice
+		dataType: double
+		lineageTag: 85a51b85-3a7c-4122-8bc1-2423d9635f44
+		summarizeBy: sum
+		sourceColumn: UnitPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TotalPrice
+		dataType: double
+		lineageTag: ed6b8b88-8f46-4538-8e7f-559c60244630
+		summarizeBy: sum
+		sourceColumn: TotalPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PaymentType
+		dataType: string
+		lineageTag: 5206f943-ba05-4701-8248-316422441df2
+		summarizeBy: none
+		sourceColumn: PaymentType
+
+		annotation SummarizationSetBy = Automatic
+
+	column PromotionApplied
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 9bdf5a85-46a5-473a-8d6d-d5a61a10f800
+		summarizeBy: none
+		sourceColumn: PromotionApplied
+
+		annotation SummarizationSetBy = Automatic
+
+	column DiscountAmount
+		dataType: double
+		lineageTag: 8ffb573f-24ef-4b50-8c38-58dec3b3f143
+		summarizeBy: sum
+		sourceColumn: DiscountAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column GiftWrap
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 650d8d5a-66ab-458f-8eb0-ea18d8361dc4
+		summarizeBy: none
+		sourceColumn: GiftWrap
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShippingMethod
+		dataType: string
+		lineageTag: 2dde228b-e4fd-462a-8eb1-150d35276f94
+		summarizeBy: none
+		sourceColumn: ShippingMethod
+
+		annotation SummarizationSetBy = Automatic
+
+	column DeliveryTime
+		dataType: int64
+		formatString: 0
+		lineageTag: c8214f82-348d-4073-a5d0-7e082b8a3ae9
+		summarizeBy: sum
+		sourceColumn: DeliveryTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column Weather
+		dataType: string
+		lineageTag: aad550e3-a9fa-44b0-bf5d-317d1a3a711b
+		summarizeBy: none
+		sourceColumn: Weather
+
+		annotation SummarizationSetBy = Automatic
+
+	column Event
+		dataType: string
+		lineageTag: ce601b9c-a5df-42cb-b91a-76b00ff74728
+		summarizeBy: none
+		sourceColumn: Event
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerSatisfaction
+		dataType: int64
+		formatString: 0
+		lineageTag: a9fb5302-b088-4e7c-855e-4d789902f980
+		summarizeBy: sum
+		sourceColumn: CustomerSatisfaction
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReturnFlag
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: aaaad917-a141-45f0-91c7-d9eab0e93085
+		summarizeBy: none
+		sourceColumn: ReturnFlag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Location INT' =
+			RIGHT(
+			        'Onyx Data -DataDNA Dataset Chal'[Location],
+			        LEN('Onyx Data -DataDNA Dataset Chal'[Location])-5)
+		dataType: int64
+		formatString: 0
+		lineageTag: 03044e40-b3bd-4d27-9b06-7202fb210e2e
+		summarizeBy: sum
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Location sort' = CALCULATE(MAX('Onyx Data -DataDNA Dataset Chal'[Location]))
+		lineageTag: 6a9bb519-163b-4f9e-b5c0-79112803a588
+		summarizeBy: none
+		sortByColumn: 'Location INT'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column MONTH = MONTH('Onyx Data -DataDNA Dataset Chal'[Date])
+		formatString: 0
+		lineageTag: 9495153b-034b-426f-8a07-91caf3e3f097
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column YEAR = YEAR('Onyx Data -DataDNA Dataset Chal'[Date])
+		formatString: 0
+		lineageTag: 534a67e1-1203-4bb6-81ed-ce57ceb6ca7f
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Onyx Data -DataDNA Dataset Chal' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(Web.Contents("https://raw.githubusercontent.com/get-programmed/Power_BI_Repo_LinkedIn/main/5_Conditional_Formatting_ColumnBars/Onyx%20Data%20-DataDNA%20Dataset%20Challenge%20-%20Christmas%20Sales%20and%20Trends%20-%20December%202023.csv"),[Delimiter=",", Columns=25, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"TransactionID", Int64.Type}, {"Date", type date}, {"Time", type time}, {"CustomerID", Int64.Type}, {"Age", Int64.Type}, {"Gender", type text}, {"Location", type text}, {"StoreID", Int64.Type}, {"OnlineOrderFlag", type logical}, {"ProductID", Int64.Type}, {"ProductName", type text}, {"Category", type text}, {"Quantity", Int64.Type}, {"UnitPrice", type number}, {"TotalPrice", type number}, {"PaymentType", type text}, {"PromotionApplied", type logical}, {"DiscountAmount", type number}, {"GiftWrap", type logical}, {"ShippingMethod", type text}, {"DeliveryTime", Int64.Type}, {"Weather", type text}, {"Event", type text}, {"CustomerSatisfaction", Int64.Type}, {"ReturnFlag", type logical}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

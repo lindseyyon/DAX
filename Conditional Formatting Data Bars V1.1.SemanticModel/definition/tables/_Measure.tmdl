@@ -1,0 +1,59 @@
+table _Measure
+	lineageTag: 020542d9-7e42-4d35-829d-d9e476b18808
+
+	measure _ConstantLineAt = ```
+			
+			SWITCH (
+			    TRUE (),
+			    ISFILTERED('Onyx Data -DataDNA Dataset Chal'[Date].[Year]) && ISFILTERED('Onyx Data -DataDNA Dataset Chal'[Date].[Month]), 7000,
+			    ISFILTERED('Onyx Data -DataDNA Dataset Chal'[Date].[Year]), 14000,
+			    ISFILTERED('Onyx Data -DataDNA Dataset Chal'[Date].[Month]), 40000,
+			    80000
+			)
+			
+			
+			```
+		lineageTag: b5ca3cab-64b9-45c4-8b72-71a0ea12dc28
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _SumCondition =
+			
+			VAR _SumIs = CALCULATE(SUM('Onyx Data -DataDNA Dataset Chal'[TotalPrice]))
+			VAR _Cond = IF( _SumIs >= [_ConstantLineAt], [_ConstantLineAt], _SumIs)
+			RETURN
+			_Cond
+		lineageTag: 34e7d69f-9ebb-4b37-bb0e-2d4df2c4cec3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _SumStaked =
+			
+			VAR _SumIs = CALCULATE(SUM('Onyx Data -DataDNA Dataset Chal'[TotalPrice])) - [_ConstantLineAt]
+			VAR _Cond = IF( _SumIs <0, 0, _SumIs)
+			RETURN
+			_Cond
+		lineageTag: cbcebf5b-839c-488e-90c7-e81739c41a7e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Transparent BG' = IF(1=1, "#00000000")
+		lineageTag: 894d6d23-5bba-4e54-b2a1-b7dd2e482e69
+
+	measure 'Conditional Formatting Color' = IF(CALCULATE(SUM('Onyx Data -DataDNA Dataset Chal'[TotalPrice])) > [_ConstantLineAt], "#FECC00", "#000000")
+		lineageTag: d36fdc3e-60d2-4102-9138-48841ac431c8
+
+	column Value
+		lineageTag: 0ccfcfb9-bf1e-4eb0-ad14-ada1b93be619
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measure = calculated
+		mode: import
+		source = {"Hi All Good?"}
+
+	annotation PBI_Id = 3b5442af44584129b3716993573a6f12
+

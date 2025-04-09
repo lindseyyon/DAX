@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Material UI Icons"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "cd001b72-73e7-a255-4ff7-6b345ea2e070"
+  }
+}

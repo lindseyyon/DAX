@@ -1,0 +1,27 @@
+table 'Calculation group'
+	lineageTag: d05a8bfc-f0bf-464e-b45b-071938a76200
+
+	calculationGroup
+
+		calculationItem Games = SELECTEDMEASURE()
+
+		calculationItem Position = 1
+
+	column Info
+		dataType: string
+		lineageTag: 641fc39e-9cf6-4b97-80a7-2ee46368c094
+		summarizeBy: none
+		sourceColumn: Name
+		sortByColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ordinal
+		dataType: int64
+		formatString: 0
+		lineageTag: 26bcee9f-54d4-460f-a863-bebeb953b7e6
+		summarizeBy: sum
+		sourceColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+

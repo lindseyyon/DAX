@@ -1,0 +1,28 @@
+table Table
+
+	column Column1
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation Format = <Format Format="NumberWhole" Accuracy="0" />
+
+		annotation DataTypeAtRefresh = Int64#####not a type
+
+		annotation PBI_NameAtRefresh = Column1
+
+		annotation PBI_WasHiddenAtRefresh = False
+
+	partition Table-e78e9b7f-b0ff-490c-9ca2-03f8228e4698 = query
+		mode: import
+		source
+			query = SELECT * FROM [Table]
+			dataSource: 5e12c909-38a0-4d90-8c23-302ae9c53cf3
+
+	annotation PBI_Id = a30661ad-2848-40b8-a5ba-45f48ac1dfb4
+
+	annotation LinkedQueryName = Table
+

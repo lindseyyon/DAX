@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Prebuilt Nav -Microsoft 365 Template App"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "a4156a79-ba2e-9fc2-4003-958b34e96f83"
+  }
+}

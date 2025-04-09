@@ -1,0 +1,44 @@
+table Position
+	lineageTag: 6af34bdc-bbb4-4841-bd3a-1158cc5d7a7f
+
+	column Position
+		dataType: string
+		lineageTag: ea659794-221d-488c-9aec-5755c7caa360
+		summarizeBy: none
+		sourceColumn: Position
+
+		annotation SummarizationSetBy = Automatic
+
+	column X
+		dataType: double
+		lineageTag: e04399b7-9333-4e9b-a614-5406c0715f33
+		summarizeBy: sum
+		sourceColumn: X
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Y
+		dataType: double
+		lineageTag: ad8551b8-3eb3-456c-bfaa-cc74facc7785
+		summarizeBy: sum
+		sourceColumn: Y
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Position = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WcvdW0lEy0jEFkgY6RkqxOtFKzk5wIUOwgIsvXABEgtUghIyhQj7hYA06SqY65hA1bnA1ZmCBIJAKEyQVQb5Q/UimgIQMUYQcEXYBBWIB", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Position = _t, X = _t, Y = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Position", type text}, {"X", type number}, {"Y", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

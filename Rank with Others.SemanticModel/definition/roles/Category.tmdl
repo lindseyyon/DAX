@@ -1,0 +1,7 @@
+role Category
+	modelPermission: read
+
+	tablePermission Item = [Category] = "Category 1"
+
+	annotation PBI_Id = 7a03ac218ff8430583864842de351550
+

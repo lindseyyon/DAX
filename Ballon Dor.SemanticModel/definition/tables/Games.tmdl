@@ -1,0 +1,50 @@
+table Games
+	lineageTag: f65b37a9-11a2-4334-8400-4a396170e4a0
+
+	measure 'Player #' = DISTINCTCOUNT(Games[Player])
+		formatString: 0
+		lineageTag: bdd639a1-62c5-4ccb-aa87-de3bbcd96fb5
+
+	measure 'Games #' = SUM(Games[Games])
+		lineageTag: c70c2b34-9179-4cf6-b942-a58ece3367a5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Player
+		dataType: string
+		lineageTag: d84a845a-5f21-46af-ac09-48941ed4f559
+		summarizeBy: none
+		sourceColumn: Player
+
+		annotation SummarizationSetBy = Automatic
+
+	column Position
+		dataType: string
+		lineageTag: 327e7bac-57a5-455f-9737-3cca9465c5a2
+		summarizeBy: none
+		sourceColumn: Position
+
+		annotation SummarizationSetBy = Automatic
+
+	column Games
+		dataType: int64
+		formatString: 0
+		lineageTag: 57f4728d-57d9-4d9f-a161-85ccfba9ff83
+		summarizeBy: sum
+		sourceColumn: Games
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Games = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("VY+9DoAgDITfhdkFEH9GrWEwkhgGjTG+/2sIRb26NHzX3pWep4qkKkUhlU5d1cNT5rqHQGMqBhzDx8eSnsueigaT/3PMfScMImD1X4CFMPCAhsARRlryhHDwEY0wZHbM8/iusODyRw2BV9YGQsRVxRH+Cbyh9Dd6E20LoVzlIAyP47oB", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Player = _t, Position = _t, Games = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Player", type text}, {"Position", type text}, {"Games", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

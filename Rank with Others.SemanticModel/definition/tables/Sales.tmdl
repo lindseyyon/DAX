@@ -1,0 +1,210 @@
+table Sales
+	lineageTag: 5501511c-0e34-4dda-b6c7-bbec38a7a0ba
+
+	measure 'Sales YTD Fact' = ```
+			CALCULATE([Sales], DATESYTD(Sales[Sales Date])) 
+			```
+		lineageTag: e14ec37a-c14b-4cd0-bef9-7e9cc7f61580
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Order No'
+		dataType: int64
+		formatString: 0
+		lineageTag: a5d071e9-e4e1-442c-8c2f-0323ed3ebff1
+		summarizeBy: sum
+		sourceColumn: Order No
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Item ID'
+		dataType: int64
+		formatString: 0
+		lineageTag: 41fe5d2f-6666-4503-8963-1ad2149d1b64
+		summarizeBy: none
+		sourceColumn: Item ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales Date'
+		dataType: dateTime
+		formatString: yyyy-mm-dd hh:nn:ss
+		lineageTag: 4329bba4-fd23-4acf-821a-b429d35ba034
+		summarizeBy: none
+		sourceColumn: Sales Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_ChangedProperties = ["DataType","FormatString"]
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column 'Deilvery Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 97df16d1-3e8b-4a44-8b80-f91820c1df6d
+		summarizeBy: none
+		sourceColumn: Deilvery Date
+
+		variation Variation
+			isDefault
+			relationship: cb52353d-3494-49d8-b0a5-4e67fb28671d
+			defaultHierarchy: LocalDateTable_f66747a7-19f7-45f8-9870-f1b2e5b8e2ee.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Customer Id'
+		dataType: int64
+		formatString: 0
+		lineageTag: c5456dd0-77de-4e9c-bb24-92e107dcbd23
+		summarizeBy: none
+		sourceColumn: Customer Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'City Id'
+		dataType: int64
+		formatString: 0
+		lineageTag: ca7f2d2c-f328-4141-8863-f687c52fa103
+		summarizeBy: none
+		sourceColumn: City Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Qty
+		dataType: int64
+		formatString: 0
+		lineageTag: d6a40524-bfeb-4a74-9d0d-a5b0cb991b02
+		summarizeBy: sum
+		sourceColumn: Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column Price
+		dataType: int64
+		formatString: 0
+		lineageTag: 98a1f839-0ded-449a-ad46-516e68103b94
+		summarizeBy: sum
+		sourceColumn: Price
+
+		annotation SummarizationSetBy = Automatic
+
+	column cost
+		dataType: int64
+		formatString: 0
+		lineageTag: 68e4bdf8-afd8-4705-aa88-5210eb7485c2
+		summarizeBy: sum
+		sourceColumn: cost
+
+		annotation SummarizationSetBy = Automatic
+
+	column DISC2
+		dataType: double
+		lineageTag: 9c2e6086-cc8d-4d9b-bc89-47f91e9f972a
+		summarizeBy: sum
+		sourceColumn: DISC2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Dis Per'
+		dataType: int64
+		formatString: 0
+		lineageTag: 48106668-ded1-488a-922b-5dce7dde42a2
+		summarizeBy: sum
+		sourceColumn: Dis Per
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Gross Sales' = [Qty] * [Price]
+		formatString: 0
+		lineageTag: 5b7cc766-9ef2-419a-8f26-bac83ef6aa36
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Discount = [Gross Sales]*[Dis Per]/100.0
+		lineageTag: 798aa8e1-a5eb-4d59-a89b-676c0bdd7f67
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Net Sales' = ```
+			[Gross Sales] - [Discount] 
+			```
+		lineageTag: b99aa46b-b333-4030-a4e5-52d96d10f1d4
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Month Year' = FORMAT([Sales Date],"YYYYMM")
+		lineageTag: 3f76b74d-1c0c-4352-bfba-fa9b78925521
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales Date time' = [Sales Date] + time(2,0,0)
+		formatString: m/d/yyyy
+		lineageTag: 36a69b6f-bbc5-42f2-846b-43cb4062e545
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: a3b9f848-b085-4f72-bb06-826709e2f86e
+			defaultHierarchy: LocalDateTable_d1e1378f-a1b9-410f-9a7a-9b0783b56c73.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_ChangedProperties = ["FormatString"]
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column 'Sales Date 1' = date(year([Sales Date time]), MONTH([Sales Date time]), day([Sales Date time]))
+		formatString: General Date
+		lineageTag: dde267c3-8db6-4485-a49b-1f6920ef42e9
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 12ad6073-7a16-463b-a3d6-2be6bf13ae6d
+			defaultHierarchy: LocalDateTable_1f9b9c08-940b-4d9c-89ec-f0e08c17bd24.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Custom
+		dataType: string
+		lineageTag: e3d0c7ac-4585-4634-bcf7-7275c6b554ff
+		summarizeBy: none
+		sourceColumn: Custom
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'COGS Amount' = Sales[cost]*[Qty]
+		formatString: 0
+		lineageTag: 217a9742-5de6-47fc-a376-1bfd8ef07498
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Sales-2a6d633f-2915-4fd0-9827-184e2b5625f1 = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\Amit.Chandak\Google Drive\Kanerika\power bi\Data\sales_data_config1.xlsx"), null, true),
+				    Sales_Sheet = Source{[Item="Sales",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sales_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Order No", Int64.Type}, {"Item ID", Int64.Type}, {"Sales Date", type date}, {"Deilvery Date", type date}, {"Customer Id", Int64.Type}, {"City Id", Int64.Type}, {"Qty", Int64.Type}, {"Price", Int64.Type}, {"cost", Int64.Type}, {"Dis Per", Int64.Type}, {"DISC2", type number}}),
+				    #"Added Custom" = Table.AddColumn(#"Changed Type", "Custom", each if [Sales Date] >= Date.StartOfMonth(Date.AddMonths(Date.From(DateTime.LocalNow()),-1)) and [Date] <= Date.EndOfMonth(Date.AddMonths(Date.From(DateTime.LocalNow()),-1))
+				then "Actual" else "4YOP")
+				in
+				    #"Added Custom"
+
+	annotation PBI_ResultType = Table
+

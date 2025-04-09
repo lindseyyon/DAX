@@ -1,0 +1,300 @@
+table _Measures
+	lineageTag: 39767498-6d2d-4298-beef-eb8675555b82
+
+	measure 'Color Dark Green' = "#428C8D"
+		displayFolder: _Constants\Colors
+		lineageTag: 0eb64a82-2ad9-4f0c-9ca8-14b8a69c7c90
+
+	measure 'Color Dark Red' = "#ED3030"
+		displayFolder: _Constants\Colors
+		lineageTag: cf04aa5d-6c15-4d37-989d-f63cf8c53d87
+
+	measure 'Color Light Green' = "#C9ECEC"
+		displayFolder: _Constants\Colors
+		lineageTag: 6d648151-ebbb-4d94-bc2c-0fdb547a8777
+
+	measure 'Color Light Red' = "#EAC9CB"
+		displayFolder: _Constants\Colors
+		lineageTag: 5cf88a2c-f6f1-4e0e-be1e-0ae96f06c73b
+
+	measure 'Positions Opened' = ```
+			
+			    CALCULATE(
+			        SUM('Talent Acquisition'[Value]),
+			        FILTER(
+			            'Talent Acquisition',
+			            'Talent Acquisition'[Metric ID] = 1
+			        )
+			    )
+			```
+		formatString: 0
+		displayFolder: KPIs
+		lineageTag: 376f1e62-bf10-4506-a667-fefc5949868a
+
+	measure 'Vacancy Rate' = ```
+			
+			    CALCULATE(
+			        SUM('Talent Acquisition'[Value]),
+			        FILTER(
+			            'Talent Acquisition',
+			            'Talent Acquisition'[Metric ID] = 2
+			        )
+			    )
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: KPIs
+		lineageTag: 790a97e8-acde-4d80-a81b-430220bb5dab
+
+	measure 'Vacancy Rate LY' = ```
+			
+			    CALCULATE(
+			        SUM('Talent Acquisition'[Value]),
+			        FILTER(
+			            'Talent Acquisition',
+			            'Talent Acquisition'[Metric ID] = 3
+			        )
+			    )
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: KPIs
+		lineageTag: 38bb967e-4ee6-4cf3-a39a-e2fd137ea614
+
+	measure 'Vacancy Rate Variation' = ```
+			[Vacancy Rate] - [Vacancy Rate LY] 
+			```
+		displayFolder: KPIs
+		lineageTag: 81a831d5-d75e-4c1a-9aa5-baf11a7ccefa
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Blank values' = UNICHAR(8203)
+		displayFolder: Visualization
+		lineageTag: 5764e98a-52e5-4d0c-8609-ec920a263a35
+
+	measure 'Color Vacancy Rate Variation' = ```
+			
+			    IF(
+			        [Vacancy Rate Variation]>0,
+			        [Color Dark Red],
+			        [Color Dark Green]
+			    )
+			```
+		displayFolder: Visualization
+		lineageTag: f1fd6df4-1f75-4976-8d86-aa620696f3eb
+
+	measure 'Background Color Vacancy Rate Variation' = ```
+			
+			    IF(
+			        [Vacancy Rate Variation]>0,
+			        [Color Light Red],
+			        [Color Light Green]
+			    )
+			```
+		displayFolder: Visualization
+		lineageTag: a385ee8e-2531-4a69-b85e-33f110f50e44
+
+	measure 'Vacancy Rate Variation Formatted' = ```
+			
+			VAR _FormattedRate = FORMAT([Vacancy Rate Variation], "0.0%")
+			VAR _FormattedText = 
+			    IF(
+			        [Vacancy Rate Variation]<0,
+			        _FormattedRate & " " & [Arrow down],
+			        "+ " & _FormattedRate & " " & [Arrow up]
+			    )
+			RETURN _FormattedText 
+			```
+		displayFolder: Visualization
+		lineageTag: 5c4aa17b-079f-405f-9bb9-61cd47937099
+
+	measure Candidates = ```
+			
+			    CALCULATE(
+			        SUM('Talent Acquisition'[Value]),
+			        FILTER(
+			            'Talent Acquisition',
+			            'Talent Acquisition'[Metric ID] = 8
+			        )
+			    )
+			```
+		formatString: #,0
+		displayFolder: KPIs
+		lineageTag: c095e0e9-4b96-4048-bb06-b7a2519ce2aa
+
+	measure 'Conversion Rate' = ```
+			
+			    CALCULATE(
+			        SUM('Talent Acquisition'[Value]),
+			        FILTER(
+			            'Talent Acquisition',
+			            'Talent Acquisition'[Metric ID] = 9
+			        )
+			    )
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: KPIs
+		lineageTag: 0bb811d9-876e-4396-9b81-6a27b722c7d7
+
+	measure 'Conversion Rate LY' = ```
+			
+			    CALCULATE(
+			        SUM('Talent Acquisition'[Value]),
+			        FILTER(
+			            'Talent Acquisition',
+			            'Talent Acquisition'[Metric ID] = 10
+			        )
+			    )
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: KPIs
+		lineageTag: 72c7ec75-0ad3-47af-ad2e-8f7e5536228e
+
+	measure 'Conversion Rate Variation' = [Conversion Rate] - [Conversion Rate LY]
+		displayFolder: KPIs
+		lineageTag: 252f2a54-40f5-469b-8306-1cf6a0d87aa4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Conversion Rate Variation Formatted' = ```
+			
+			VAR _FormattedRate = FORMAT([Conversion Rate Variation], "0.0%")
+			VAR _FormattedText = 
+			    IF(
+			        [Conversion Rate Variation]<0,
+			        _FormattedRate & " " & [Arrow down],
+			        "+ " & _FormattedRate & " " & [Arrow up]
+			    )
+			RETURN _FormattedText 
+			```
+		displayFolder: Visualization
+		lineageTag: d9a3a6a8-1599-4da4-b8e6-655c6002e0ae
+
+	measure 'Font Color Conversion Rate Variation' = ```
+			
+			    IF(
+			        [Conversion Rate Variation]<0,
+			        [Color Dark Red],
+			        [Color Dark Green]
+			    )
+			```
+		displayFolder: Visualization
+		lineageTag: 97f69347-4825-4762-99ec-079740043bf5
+
+	measure 'Days to Fill' = ```
+			
+			    CALCULATE(
+			        SUM('Talent Acquisition'[Value]),
+			        FILTER(
+			            'Talent Acquisition',
+			            'Talent Acquisition'[Metric ID] = 4
+			        )
+			    )
+			```
+		formatString: 0
+		displayFolder: KPIs
+		lineageTag: 432ff549-2d88-436b-a495-701cb82997c6
+
+	measure 'Days to Fill LY' = ```
+			
+			    CALCULATE(
+			        SUM('Talent Acquisition'[Value]),
+			        FILTER(
+			            'Talent Acquisition',
+			            'Talent Acquisition'[Metric ID] = 5
+			        )
+			    )
+			```
+		formatString: 0
+		displayFolder: KPIs
+		lineageTag: eb09094c-1b73-4ff0-a818-deea71b3ad00
+
+	measure 'Days to Fill Variation' = [Days to Fill] - [Days to Fill LY]
+		displayFolder: KPIs
+		lineageTag: f690cd66-b829-4975-93e2-2c4870651ed5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Days to Fill Variation Formatted' = ```
+			
+			    IF(
+			        [Days to Fill Variation]>0, 
+			        "+ " & [Days to Fill Variation] & " " & [Arrow up], 
+			        [Days to Fill Variation] & " " & [Arrow down]
+			    )
+			```
+		displayFolder: Visualization
+		lineageTag: b449e4f0-1b86-4c2a-b5e7-d5cc74064b26
+
+	measure 'Font Color Days to Fill Variation' = ```
+			
+			    IF(
+			        [Days to Fill Variation] > 0,
+			        [Color Dark Red],
+			        [Color Dark Green]
+			    )
+			```
+		displayFolder: Visualization
+		lineageTag: 73128b09-3f91-44ad-931e-2651dfb21011
+
+	measure 'Arrow up' = UNICHAR(9650)
+		displayFolder: _Constants\Icons
+		lineageTag: 175f68fd-7814-4321-a775-62e68fd4c5f1
+
+	measure 'Arrow down' = UNICHAR(9660)
+		displayFolder: _Constants\Icons
+		lineageTag: 9303db92-aad2-4f71-9996-5e657a0b2700
+
+	measure 'Positions Filled' = ```
+			
+			    CALCULATE(
+			        SUM('Talent Acquisition'[Value]),
+			        FILTER(
+			            'Talent Acquisition',
+			            'Talent Acquisition'[Metric ID] = 6
+			        )
+			    )
+			```
+		formatString: 0
+		displayFolder: KPIs
+		lineageTag: f4f9fb66-359c-4502-9202-4da73c16566e
+
+	measure 'Today''s date' = TODAY()
+		formatString: mmmm d\, yyyy
+		displayFolder: Visualization
+		lineageTag: 17f2edcf-8d26-40b9-a0ef-9a542a49510c
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	measure 'Vacancy Rate Target' = 0.08
+		displayFolder: KPIs
+		lineageTag: 461f6c2d-7bf5-406e-881b-0f2864a69ad0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Vacancy Rate Target text' = "Below " & FORMAT([Vacancy Rate Target],"0.0%")
+		displayFolder: Visualization
+		lineageTag: c49eff53-ec85-48ac-b39e-c1031ee6bf84
+
+	measure 'Target Result' = ```
+			
+			    IF(
+			        [Vacancy Rate]> [Vacancy Rate Target],
+			        "⛔",
+			        "✅"
+			    )
+			```
+		displayFolder: KPIs
+		lineageTag: f2992817-0497-4ac8-9b6d-0c2755a5a3a6
+
+	partition _Measures = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

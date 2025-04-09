@@ -1,0 +1,80 @@
+table 'Fluent Icons'
+	lineageTag: e6c3ffb7-b2e7-4933-b281-f300e5a7cf4e
+
+	measure 'Green Icon' =
+			
+			var icon = SELECTEDVALUE('Fluent Icons'[Icon Image URL])
+			var new_icon_color = "#7DDA58"
+			
+			var replace_color =  "fill=""#212121"""
+			var new_color =  "fill=""" & new_icon_color & """"
+			return SUBSTITUTE(icon, replace_color, new_color)
+		displayFolder: Icon Measures
+		lineageTag: e0104e7f-f318-4b8c-b7a0-5b2aa45da37e
+		dataCategory: ImageUrl
+
+	measure 'Red Icon' =
+			
+			var icon = SELECTEDVALUE('Fluent Icons'[Icon Image URL])
+			var new_icon_color = "#AA1F1F"
+			
+			var replace_color =  "fill=""#212121"""
+			var new_color =  "fill=""" & new_icon_color & """"
+			return SUBSTITUTE(icon, replace_color, new_color)
+		displayFolder: Icon Measures
+		lineageTag: e0112781-83d1-4563-8b91-b55827beade4
+		dataCategory: ImageUrl
+
+	measure 'Pink Icon' =
+			
+			var icon = SELECTEDVALUE('Fluent Icons'[Icon Image URL])
+			var new_icon_color = "#CC6CE7"
+			
+			var replace_color =  "fill=""#212121"""
+			var new_color =  "fill=""" & new_icon_color & """"
+			return SUBSTITUTE(icon, replace_color, new_color)
+		displayFolder: Icon Measures
+		lineageTag: e95e5c19-2fc2-46e2-9c40-fd665fb73796
+		dataCategory: ImageUrl
+
+	column 'Icon Name'
+		dataType: string
+		lineageTag: b1eb8e01-0407-499f-9aa7-60db6dcb8f3e
+		summarizeBy: none
+		sourceColumn: Icon Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Icon Image URL'
+		dataType: string
+		lineageTag: b9cc1852-cb65-4938-b997-006432a84e08
+		dataCategory: ImageUrl
+		summarizeBy: none
+		sourceColumn: Icon Image URL
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Icon Style'
+		dataType: string
+		lineageTag: 2ea34b0d-8a56-4d2a-8b1a-3f0d9fe8373f
+		summarizeBy: none
+		sourceColumn: Icon Style
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fluent Icons' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\edwar\Downloads\Fluent Icons.csv"),[Delimiter=",", Columns=3, Encoding=1252, QuoteStyle=QuoteStyle.Csv]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"icon name", type text}, {"icon image url", type text}, {"icon style", type text}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type1",{{"icon style", "Icon Style"}, {"icon name", "Icon Name"}, {"icon image url", "Icon Image URL"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

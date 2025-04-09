@@ -1,0 +1,77 @@
+table DAX
+	lineageTag: caa296fe-a325-4e40-b36a-31a1b41386be
+
+	measure Sales = SUM(Sales[Sales Amount])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: .Base
+		lineageTag: a2d469e1-2964-440c-9bc0-147b68c1b4f3
+
+	measure 'PY Sales' = CALCULATE([Sales], DATEADD('Calendar'[Date], -1, YEAR))
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: .Time Intelligence
+		lineageTag: 45d29a49-dac8-41c7-8603-e847e1063537
+
+	measure 'YoY Sales' =
+			
+			VAR Sale = [Sales]
+			VAR PYSale = [PY Sales]
+			VAR Result = IF( AND( Sale, PYSale), Sale - PYSale)
+			RETURN
+			Result
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: .Time Intelligence
+		lineageTag: 9fd69fa7-2c4b-4180-b142-7c501f1ee91d
+
+	measure 'YoY Sales %' = DIVIDE([YoY Sales], [PY Sales])
+		formatString: #,0%;-#,0%;#,0%
+		displayFolder: .Time Intelligence
+		lineageTag: e05dfca7-3945-417b-8ab4-fe53d10b286b
+
+		annotation PBI_ChangedProperties = ["FormatString"]
+
+	measure 'Average Sales' = AVERAGE(Sales[Sales Amount])
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: .Base
+		lineageTag: b2b7a78f-e2c0-44ec-9630-951a28f58321
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure Units = SUM(Sales[Units])
+		formatString: #,0
+		displayFolder: .Base
+		lineageTag: 53f999e5-6823-4851-887d-8347734cdff9
+
+	measure 'Latest Sales Date' = MAX('Calendar'[Date])
+		formatString: dd-mmm-yy
+		displayFolder: .Misc
+		lineageTag: 0d1753fc-b201-4b3a-b50c-765b5fb61ce2
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	measure 'YoY Sales (Matrix Bar)' = IF(HASONEVALUE(Sales[Class]), [YoY Sales])
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: KPI Bars
+		lineageTag: 95b44600-137b-43c1-aee7-d0737923530a
+
+		annotation PBI_ChangedProperties = ["FormatString"]
+
+	measure 'YoY Sales (Table Bar)' = [YoY Sales]
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: KPI Bars
+		lineageTag: 9fbbe326-14d3-41f7-a82e-51713ce226f2
+
+		annotation PBI_ChangedProperties = ["FormatString"]
+
+	partition DAX-ba00dba2-ac63-435e-9bcd-d7e800aa8dfb = m
+		mode: import
+		queryGroup: 'Load to Data Model\Disconnected Tables'
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

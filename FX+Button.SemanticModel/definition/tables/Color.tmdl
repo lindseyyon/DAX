@@ -1,0 +1,28 @@
+table Color
+	lineageTag: 75f1c980-02e4-47c1-b0b5-6b5831235999
+
+	column Color
+		dataType: string
+		lineageTag: af9208b1-3d00-4495-a023-e97b560f7688
+		summarizeBy: none
+		sourceColumn: Color
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Color-596b8d1a-5073-4e8f-ad35-18847df843ed = m
+		mode: import
+		queryGroup: 'Load to Data Model\Dimension Tables'
+		source =
+				let
+				    Source = #"Data Source",
+				    Sales_Table = Source{[Item="Sales",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(Sales_Table,{{"SalesOrderID", type text}, {"Country", type text}, {"OrderDate", type date}, {"SalesChannelCode", type text}, {"ProdID", Int64.Type}, {"StyleName", type text}, {"CustomerAccountNumber", type text}, {"StoreKey", type any}, {"ProductLabel", Int64.Type}, {"ProductDescription", type text}, {"Manufacturer", type text}, {"Brand Name", type text}, {"Class", type text}, {"Color", type text}, {"StockType", type text}, {"Units", Int64.Type}, {"Sales Amount", Int64.Type}, {"NSAT", Int64.Type}, {"SubCategory", type text}, {"Category", type text}, {"Sale Size", type text}, {"ProductName", type text}, {"Unit Cost", type number}, {"Unit Price", type number}, {"SalesTax", type number}, {"Freight", type number}, {"PurchAgain", Int64.Type}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"StyleName", "Style Name"}}),
+				    #"Filtered to 2013 or Later" = Table.SelectRows(#"Renamed Columns", each [OrderDate] >= #date(2013, 1, 1)),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Filtered to 2013 or Later",{"Color"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns")
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_ResultType = Table
+

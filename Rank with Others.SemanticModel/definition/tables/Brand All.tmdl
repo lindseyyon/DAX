@@ -1,0 +1,125 @@
+table 'Brand All'
+	lineageTag: 27c79ed3-db9f-4abb-9357-5793a2b38be6
+
+	measure 'Color All Brand' = if(max('Brand All'[ALl Brand]) = "All", "Green", "blue")
+		lineageTag: 9bd589a3-1db9-48a3-a0ee-cedc9d034616
+
+	measure 'Net GT 10K' = countx(Customer, if([Net]>10000 , Customer[Name], BLANK()))
+		formatString: 0
+		lineageTag: a3536747-a9db-46cb-a9a3-fce9f22568f8
+
+	measure 'Net GT 10K 1' = countx(VALUES(Customer[Name]), if([Net]>10000 , Customer[Name], BLANK()))
+		formatString: 0
+		lineageTag: e825e166-a7f5-456b-82f1-a3bdd7611da2
+
+	measure 'Net GT 10K 3' = calculate( countx(VALUES(Customer[Name]), if([Net]>10000 , Customer[Name], BLANK())) , ALLEXCEPT(sales, Customer[Name]))
+		formatString: 0
+		lineageTag: 5f6cd7c2-9e6d-44cd-8a0f-2d4e409677a3
+
+	measure 'Net with Avg Gt' =
+			Switch( Max('Brand All'[All Brand]) ,
+			"All" , AVERAGEX(values('Brand All'[Brand]), [Net]) , [Net])
+		lineageTag: f5356c7f-5778-43fc-83ae-ee53c54d67f0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Customer Type' =
+			SWITCH(true() ,
+			ISBLANK([Sales LMTD]) && not(ISBLANK([Sales MTD])) , "New",
+			Not(ISBLANK([Sales LMTD])) && (ISBLANK([Sales MTD])) , "Lost",
+			Not(ISBLANK([Sales LMTD])) && not(ISBLANK([Sales MTD])) , "Retained"
+			 )
+		lineageTag: b968c5f9-177b-4076-877f-bb357e2e16c7
+
+	measure 'Net Work' = ```
+			CALCULATE([net] , filter('Date', WEEKDAY('Date'[Date],2) <6 )) 
+			```
+		lineageTag: 2549866e-c9b7-46ed-8588-73d6186b5873
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Net non Work' = ```
+			CALCULATE([net] , filter('Date', WEEKDAY('Date'[Date],2) >=6 )) 
+			```
+		lineageTag: 8707527f-1533-4364-8a84-ffd63d260915
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Net non work 1' = CALCULATE(CALCULATE([net] , filter('Date', WEEKDAY('Date'[Date],2) =6 )) , dateadd('Date'[Date],-2,DAY)) + CALCULATE(CALCULATE([net] , filter('Date', WEEKDAY('Date'[Date],2) =7 )) , dateadd('Date'[Date],-1,DAY))
+		lineageTag: 84bf307d-52e2-4c21-852c-ca90a1e13cb3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Net Show on Monday' = [Net Work] + [Net non work 1]
+		lineageTag: 7d72f82f-b72f-442f-b9a1-d3fd029fedc3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Net non work b 1' = CALCULATE(CALCULATE([net] , filter('Date', WEEKDAY('Date'[Date],2) =6 )) , dateadd('Date'[Date],1,DAY)) + CALCULATE(CALCULATE([net] , filter('Date', WEEKDAY('Date'[Date],2) =7 )) , dateadd('Date'[Date],2,DAY))
+		lineageTag: ffacde39-07a2-4dea-82ae-b258cb6390ec
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Net Show on Friday' = [Net Work] + [Net non work b 1]
+		lineageTag: 1cb7be36-351c-4cea-b03d-d3326cec7af4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Not Sold' = ```
+			if(ISBLANK([Net]),1,BLANK()) 
+			```
+		formatString: 0
+		lineageTag: 162d8a1f-1d82-4a02-855f-75e90165f3b6
+
+	measure 'Cat not sold to cust' = sumx(VALUES(Customer[Name]), CALCULATE(sumx(values('Item'[Category]), if(ISBLANK([Net]),1,BLANK()))))
+		formatString: 0
+		lineageTag: 56420a2a-358e-476e-8c31-adea67c29932
+
+	measure 'item not sold to cust' = sumx(VALUES(Customer[Name]), CALCULATE(sumx(values('Item'[Name]), if(ISBLANK([Net]),1,BLANK()))))
+		formatString: 0
+		lineageTag: 3506428e-5da7-4a5a-9b79-6d15c0346dfc
+
+	measure Measure = 55*6138
+		formatString: 0
+		lineageTag: 8762032c-9511-4081-abb6-edf7d5af52ce
+
+	measure 'Rank Brand' = rankx(ALLSELECTED('Brand All'[All Brand]), [Net])
+		formatString: 0
+		lineageTag: 0f08b940-8165-4cc1-85bc-dee66947db2c
+
+	measure 'Topn + Other' =
+			
+			var _nother =  CALCULATE(sumx(filter(values( 'Brand All'[All Brand]) ,[Rank Brand] <= [Parameter Value]),[net]), 'Brand All'[All Brand] <> "Others")
+			return
+			if(ISINSCOPE('Brand All'[All Brand]), if([Rank Brand] <= [Parameter Value]+1, if(max('Brand All'[All Brand]) = "Others", [Net]- _nother,[Net]) , BLANK() ),[Net])
+		lineageTag: 53c3507d-903f-4d4a-80ca-a4a5924585c3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Brand
+		lineageTag: 90d7f730-7ebe-495d-a32d-ae99bc349731
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Item[Brand]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'All Brand'
+		lineageTag: 9d3a537b-cc12-47de-8d5c-60a1d8f49541
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [ALl Brand]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Brand All-1832a0c0-1dcc-499f-a751-333aa9a6e7b6' = calculated
+		mode: import
+		source = ```
+				Union(  SUMMARIZE('Item','Item'[Brand], "All Brand", max('Item'[Brand])) ,
+				SUMMARIZE('Item','Item'[Brand], "All Brand", "Others")
+				)
+				
+				```
+
+	annotation PBI_Id = 6158e73b85c74221857509b8571f855e
+

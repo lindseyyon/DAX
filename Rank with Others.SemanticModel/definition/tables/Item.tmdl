@@ -1,0 +1,87 @@
+table Item
+	lineageTag: 65dffb67-5d9e-4b2b-adcc-30b9dd10a9e6
+
+	column 'Item Id'
+		dataType: int64
+		formatString: 0
+		lineageTag: 043cc7cf-c363-497d-a864-e6f9dfea5bd1
+		summarizeBy: none
+		sourceColumn: Item Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: 9cc96daf-0e5a-4b41-8c3d-8e7dba755a4b
+		summarizeBy: none
+		sourceColumn: Name
+		sortByColumn: 'Item Id'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_ChangedProperties = ["SortByColumn"]
+
+	column 'Brand Id'
+		dataType: int64
+		formatString: 0
+		lineageTag: c95a610e-0965-4315-9533-f4af65603787
+		summarizeBy: count
+		sourceColumn: Brand Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Category Id'
+		dataType: int64
+		formatString: 0
+		lineageTag: 255f750a-d648-43b2-9f10-98e8ca596620
+		summarizeBy: count
+		sourceColumn: Category Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sub Category Id'
+		dataType: int64
+		formatString: 0
+		lineageTag: 39d38093-2beb-4c22-806f-968a50653fca
+		summarizeBy: count
+		sourceColumn: Sub Category Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Brand
+		dataType: string
+		lineageTag: dd351db2-c6a6-4be7-ba41-79f2bb01f36b
+		summarizeBy: none
+		sourceColumn: Brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: 301dabea-7583-4c0c-8060-ee49ab4d9ca8
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sub Category'
+		dataType: string
+		lineageTag: 12a0730d-d1ef-4c6e-9539-c158dd72b972
+		summarizeBy: none
+		sourceColumn: Sub Category
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Item-1302021c-e77a-4bd8-8cca-241e3dd89860 = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\Amit.Chandak\Google Drive\Kanerika\power bi\Data\sales_data_config1.xlsx"), null, true),
+				    Item_Sheet = Source{[Item="Item",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Item_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Item Id", Int64.Type}, {"Name", type text}, {"Brand Id", Int64.Type}, {"Category Id", Int64.Type}, {"Sub Category Id", Int64.Type}, {"Brand", type text}, {"Category", type text}, {"Sub Category", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

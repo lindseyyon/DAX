@@ -1,0 +1,70 @@
+{
+  "config": "{\"version\":\"5.59\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU10\",\"version\":\"5.59\",\"type\":2},\"customTheme\":{\"name\":\"CatManNextPlain2171119387092928.json\",\"version\":\"5.59\",\"type\":1}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":0,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"useEnhancedTooltips\":true,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}],\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY24SU10",
+            "path": "BaseThemes/CY24SU10.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    },
+    {
+      "resourcePackage": {
+        "items": [
+          {
+            "name": "46fy6jzc04653454715788796.png",
+            "path": "46fy6jzc04653454715788796.png",
+            "type": 100
+          },
+          {
+            "name": "CatManNextPlain2171119387092928.json",
+            "path": "CatManNextPlain2171119387092928.json",
+            "type": 100
+          }
+        ],
+        "name": "RegisteredResources",
+        "type": 1
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{\"relationships\":[{\"source\":\"227f2850bc581ec522ed\",\"target\":\"33211518322e653bbeab\",\"type\":1}]}",
+      "displayName": "Page 1",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "6c8ccd87768c3a9ee2c2",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"227f2850bc581ec522ed\",\"layouts\":[{\"id\":0,\"position\":{\"x\":168.31496062992127,\"y\":51.40157480314961,\"z\":1000,\"width\":171.33858267716536,\"height\":288.251968503937,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"listSlicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Player.Column1\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"Player\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"Name\"},\"Name\":\"Player.Column1\",\"NativeReferenceName\":\"Name\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{}}],\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"Player\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"Name\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'Vincius Junior'\"}}]]}}}]}}}}],\"value\":[{\"properties\":{\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"9D\"}}}},\"selector\":{\"id\":\"default\"}}],\"selectionIcon\":[{\"properties\":{\"size\":{\"expr\":{\"Literal\":{\"Value\":\"12L\"}}},\"spacing\":{\"expr\":{\"Literal\":{\"Value\":\"5L\"}}}},\"selector\":{\"id\":\"default\"}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Players'\"}}},\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"12D\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":2,\"Percent\":0}}}}},\"bold\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"padding\":[{\"properties\":{\"top\":{\"expr\":{\"Literal\":{\"Value\":\"5D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 288.25,
+          "width": 171.34,
+          "x": 168.31,
+          "y": 51.40,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"33211518322e653bbeab\",\"layouts\":[{\"id\":0,\"position\":{\"x\":355.7795275590551,\"y\":51.40157480314961,\"z\":0,\"width\":381.98425196850394,\"height\":536.1889763779527,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"scatterChart\",\"projections\":{\"X\":[{\"queryRef\":\"Position.X\",\"active\":true}],\"Y\":[{\"queryRef\":\"Position.Y\"}],\"Size\":[{\"queryRef\":\"Games.Games #\"}],\"Category\":[{\"queryRef\":\"Games.Position\",\"active\":true}],\"Series\":[{\"queryRef\":\"Calculation group.Calculation group column\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"Position\",\"Type\":0},{\"Name\":\"g\",\"Entity\":\"Games\",\"Type\":0},{\"Name\":\"c\",\"Entity\":\"Calculation group\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"X\"}},\"Function\":1},\"Name\":\"Position.X\",\"NativeReferenceName\":\"Average of X\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"Y\"}},\"Function\":1},\"Name\":\"Position.Y\",\"NativeReferenceName\":\"Average of Y\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Games #\"},\"Name\":\"Games.Games #\",\"NativeReferenceName\":\"Games #\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Position\"},\"Name\":\"Games.Position\",\"NativeReferenceName\":\"Position\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Info\"},\"Name\":\"Calculation group.Calculation group column\",\"NativeReferenceName\":\"Info\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"valueAxis\":[{\"properties\":{\"start\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}},\"end\":{\"expr\":{\"Literal\":{\"Value\":\"7D\"}}},\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"showAxisTitle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"categoryAxis\":[{\"properties\":{\"start\":{\"expr\":{\"Literal\":{\"Value\":\"0.5D\"}}},\"end\":{\"expr\":{\"Literal\":{\"Value\":\"4.5D\"}}},\"invertAxis\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"showAxisTitle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"plotArea\":[{\"properties\":{\"image\":{\"image\":{\"name\":{\"expr\":{\"Literal\":{\"Value\":\"'46fy6jzc.png'\"}}},\"url\":{\"expr\":{\"ResourcePackageItem\":{\"PackageName\":\"RegisteredResources\",\"PackageType\":1,\"ItemName\":\"46fy6jzc04653454715788796.png\"}}},\"scaling\":{\"expr\":{\"Literal\":{\"Value\":\"'Fit'\"}}}}}}}],\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"legend\":[{\"properties\":{\"showGradientLegend\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"position\":{\"expr\":{\"Literal\":{\"Value\":\"'BottomCenter'\"}}},\"showTitle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"bubbles\":[{\"properties\":{\"markerRangeType\":{\"expr\":{\"Literal\":{\"Value\":\"'dataRange'\"}}},\"bubbleSize\":{\"expr\":{\"Literal\":{\"Value\":\"-7L\"}}}}},{\"properties\":{\"markerShape\":{\"expr\":{\"Literal\":{\"Value\":\"'circle'\"}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Calculation group\"}},\"Property\":\"Info\"}},\"Right\":{\"Literal\":{\"Value\":\"'Games'\"}}}}}]}},{\"properties\":{\"markerShape\":{\"expr\":{\"Literal\":{\"Value\":\"'circle'\"}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Calculation group\"}},\"Property\":\"Info\"}},\"Right\":{\"Literal\":{\"Value\":\"'Position'\"}}}}}]}}],\"dataPoint\":[{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":2,\"Percent\":0}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Calculation group\"}},\"Property\":\"Info\"}},\"Right\":{\"Literal\":{\"Value\":\"'Position'\"}}}}}]}}],\"markers\":[{\"properties\":{\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"70D\"}}},\"borderShow\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Calculation group\"}},\"Property\":\"Info\"}},\"Right\":{\"Literal\":{\"Value\":\"'Games'\"}}}}}]}},{\"properties\":{\"rotation\":{\"expr\":{\"Literal\":{\"Value\":\"90D\"}}},\"borderShow\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"borderWidth\":{\"expr\":{\"Literal\":{\"Value\":\"4D\"}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Calculation group\"}},\"Property\":\"Info\"}},\"Right\":{\"Literal\":{\"Value\":\"'Position'\"}}}}}]}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Position'\"}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'center'\"}}}}}],\"subTitle\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Player\"}},\"Property\":\"Selected Player\"}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'center'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 536.19,
+          "width": 381.98,
+          "x": 355.78,
+          "y": 51.40,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ],
+  "theme": "CatManNextPlain2171119387092928.json"
+}

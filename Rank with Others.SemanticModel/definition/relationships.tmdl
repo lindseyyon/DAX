@@ -1,0 +1,36 @@
+relationship cb52353d-3494-49d8-b0a5-4e67fb28671d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Sales.'Deilvery Date'
+	toColumn: LocalDateTable_f66747a7-19f7-45f8-9870-f1b2e5b8e2ee.Date
+
+relationship 0ea41223-220a-4d74-b058-10291abef371
+	fromColumn: Sales.'Customer Id'
+	toColumn: Customer.'Customer Id'
+
+relationship abaf0d5c-2deb-4438-aca9-f7e1dc1a092b
+	fromColumn: Sales.'Item ID'
+	toColumn: Item.'Item Id'
+
+relationship 7043b4b0-3dbe-437a-9130-bf630c849a67
+	fromColumn: Sales.'City Id'
+	toColumn: Geography.'City Id'
+
+relationship a3b9f848-b085-4f72-bb06-826709e2f86e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Sales.'Sales Date time'
+	toColumn: LocalDateTable_d1e1378f-a1b9-410f-9a7a-9b0783b56c73.Date
+
+relationship 12ad6073-7a16-463b-a3d6-2be6bf13ae6d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Sales.'Sales Date 1'
+	toColumn: LocalDateTable_1f9b9c08-940b-4d9c-89ec-f0e08c17bd24.Date
+
+relationship c4a1254e-e587-4b05-9bf3-ab8df4f42a70
+	fromColumn: Sales.'Sales Date'
+	toColumn: Date.Date
+
+relationship a61b0191-635a-4ae3-afe9-d93083bcf578
+	toCardinality: many
+	fromColumn: Item.Brand
+	toColumn: 'Brand All'.Brand
+

@@ -1,0 +1,45 @@
+table 'Talent Acquisition'
+	lineageTag: 32a40f61-81e6-41dd-a7e2-d8128bc0f468
+
+	column Metric
+		dataType: string
+		lineageTag: 9ea237ac-a7bd-47ed-8821-7cd400c26eac
+		summarizeBy: none
+		sourceColumn: Metric
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value
+		dataType: double
+		lineageTag: 0b5c3d25-dbfb-4d26-b5cc-c8c33aa869ac
+		summarizeBy: sum
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Metric ID'
+		dataType: int64
+		formatString: 0
+		lineageTag: 7570f1ad-65cf-4785-b7ae-fdd4564996c7
+		summarizeBy: count
+		sourceColumn: Metric ID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Talent Acquisition' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("G:\My Drive\Power BI\Dashboards\Demos\New Card's Reference Labels\Talent Acquisition Stats.xlsx"), null, true),
+				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Metric", type text}, {"Value", type number}, {"Metric ID", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

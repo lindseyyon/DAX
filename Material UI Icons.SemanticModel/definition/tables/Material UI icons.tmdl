@@ -1,0 +1,43 @@
+table 'Material UI icons'
+	lineageTag: 760f5cc2-68ac-4767-8e5e-6c004b0b75f8
+
+	measure Blank = Blank()
+		formatString: 0
+		lineageTag: 8f97dccc-34f2-41e1-bad5-41e7346fa95f
+
+	measure Icon = SUBSTITUTE(CALCULATE(max('Material UI icons'[icon image url]), 'Material UI icons'[icon name] ="Snowmobile"), "currentColor", "#E7DDFF")
+		lineageTag: 690ba846-9440-4da2-b19b-2f0147e504ea
+		dataCategory: ImageUrl
+
+	column 'icon name'
+		dataType: string
+		lineageTag: aefc1e37-849c-458d-9f56-772b621372fd
+		summarizeBy: none
+		sourceColumn: icon name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'icon image url'
+		dataType: string
+		lineageTag: a3754923-95ef-4384-bee8-000ad77930d5
+		dataCategory: ImageUrl
+		summarizeBy: none
+		sourceColumn: icon image url
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Material UI icons' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\edwar\OneDrive\Desktop\Material UI icons.csv"),[Delimiter=",", Columns=2, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}, {"Column2", type text}}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"icon name", type text}, {"icon image url", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,132 @@
+table Calendar
+	lineageTag: 42cc2f4e-e35b-4c2d-b176-409a834848f2
+	dataCategory: Time
+
+	column Date
+		isKey
+		formatString: General Date
+		lineageTag: 6cf97431-a1f8-4c4f-9988-e9f87b641948
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Num' = MONTH('Calendar'[Date])
+		formatString: 0
+		lineageTag: 2c2834c2-6562-45a4-9117-4747f48c48be
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month = FORMAT('Calendar'[Date], "mmm")
+		lineageTag: ae702348-df7d-43b3-be9d-55f87195e29f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quarter Num' = QUARTER('Calendar'[Date])
+		formatString: 0
+		lineageTag: 7e2e953d-d0bc-4a92-ba98-a92026884f9a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter = "Q" & 'Calendar'[Quarter Num]
+		lineageTag: fe209b30-29f0-48e9-887c-3eafc1b021e1
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year = YEAR('Calendar'[Date])
+		formatString: 0
+		lineageTag: 652716dc-7444-4ce5-8044-ac15648b4f5e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Year' = 'Calendar'[Month] & " " & 'Calendar'[Year]
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: ad67fee7-8b82-43a5-b482-a657a0f6ac80
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_ChangedProperties = ["DataType"]
+
+	column 'Quarter Year' = 'Calendar'[Quarter] & " " & 'Calendar'[Year]
+		lineageTag: d23855c3-4db7-40fb-af4d-8f178eacaf2a
+		summarizeBy: none
+		sortByColumn: 'Quarter Year Num'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_ChangedProperties = ["SortByColumn"]
+
+	column 'Quarter Year Num' = 'Calendar'[Year] & 'Calendar'[Quarter Num]
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: df0571c7-054d-4932-8d19-9e78edadf43f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_ChangedProperties = ["DataType","IsHidden"]
+
+	column 'Year Offset' = YEAR('Calendar'[Date]) - YEAR(TODAY())
+		formatString: 0
+		lineageTag: 67a73770-6309-4d0b-b7c7-1c71f7b08dd5
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'Independent Hierarchy'
+		lineageTag: d30bdc8a-74ce-41dd-8b4b-7d3eb9d9bc44
+
+		level Year
+			lineageTag: 25e17c47-c088-468c-bcc6-8ac6cc071757
+			column: Year
+
+		level 'Quarter Year'
+			lineageTag: e6d7fa69-b76c-487f-83c0-c6896c734a59
+			column: 'Quarter Year'
+
+		level 'Month Year'
+			lineageTag: aacb2bab-e79f-4374-8f61-46a21c554a47
+			column: 'Month Year'
+
+		level Date
+			lineageTag: e80e77e3-0226-4b40-9040-f045ced57374
+			column: Date
+
+	hierarchy 'Dependent Hierarchy'
+		lineageTag: 17bc0054-599b-4a64-b8c9-6fe7db562baf
+
+		level Year
+			lineageTag: 6f9b43b3-c16d-41ba-8b8a-e59bde2329ab
+			column: Year
+
+		level Quarter
+			lineageTag: ec64b737-f171-4ee5-8ff0-a182eff75824
+			column: Quarter
+
+		level Date
+			lineageTag: 368327c2-a3e0-4b38-b8cb-09c863c6b70b
+			column: Date
+
+		level Month
+			lineageTag: 2c231a40-37da-47d6-9020-dd3c4d9e9657
+			column: Month
+
+	partition Calendar-e86c33d0-07f2-4e89-8e90-1bee7bb41488 = calculated
+		mode: import
+		source = CALENDAR(MIN(Sales[OrderDate]), MAX(Sales[OrderDate]))
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

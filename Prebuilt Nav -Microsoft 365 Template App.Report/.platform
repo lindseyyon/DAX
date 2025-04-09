@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Prebuilt Nav -Microsoft 365 Template App"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "1841a21f-df68-8780-44f9-6cb10ba51616"
+  }
+}

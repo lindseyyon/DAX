@@ -1,0 +1,184 @@
+table Customer
+	lineageTag: 40e0f885-a6cf-4d39-8bb0-5bd9c35aae06
+
+	measure Sales = SUM(Sales[Net Sales])
+		lineageTag: 0c95d60c-b15f-4bce-9daf-899776077ee1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sales YTD' = CALCULATE([Sales], DATESYTD('Date'[Date]))
+		lineageTag: 5fe78488-8403-4a4e-b220-d9fde2c70590
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sales LYTD' = CALCULATE([Sales], DATESYTD(DATEADD('Date'[Date],-1,YEAR)))
+		lineageTag: f711cdcb-1b28-413d-9d95-9ff788d11c89
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sales MTD' = ```
+			CALCULATE([Sales], DATESMTD('Date'[Date])) 
+			```
+		lineageTag: 7adf132f-6a81-4be1-a7c2-2ecb8c7a85ae
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sales LMTD' = ```
+			CALCULATE([Sales], DATESMTD(DATEADD('Date'[Date],-1, MONTH))) 
+			```
+		lineageTag: e2109862-e67e-4acd-b14b-ffcaa1641b3f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sales Previous Month' = ```
+			CALCULATE([Sales],PREVIOUSMONTH('Date'[Date])) 
+			```
+		lineageTag: 32f841e5-568b-4a51-b39c-672f7b3e6d38
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sales Previous Year' = CALCULATE([Sales], PREVIOUSYEAR('Date'[Date]))
+		lineageTag: fa507ecc-720e-443d-8221-9c628e0a57ca
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sales QTD' = ```
+			CALCULATE([Sales], DATESQTD('Date'[Date])) 
+			```
+		lineageTag: 1873561f-ee3f-4778-a2bf-6ed80675f814
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Selected Value' = ```
+			SWITCH(SELECTEDVALUE('Measure'[Measure Name],"MTD") ,
+			"MTD", [Sales MTD],
+			"QTD", [Sales QTD],
+			"YTD", [Sales YTD]
+			)
+			
+			```
+		lineageTag: bfb70661-f18d-4e67-bfdb-36bda81d7434
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Name1 = SELECTEDVALUE('Measure'[Desc])
+		lineageTag: 5678b4bc-11bb-4c1d-aa72-04a5be49a8bb
+
+	measure 'Brand Color' =
+			Switch( true(),
+			max('Item'[brand]) = "Brand 1" , "red",
+			max('Item'[brand]) = "Brand 2" , "blue",
+			max('Item'[brand]) = "Brand 3" , "green",
+			max('Item'[brand]) = "Brand 4" , "gray",
+			max('Item'[brand]) = "Brand 5" , "yellow",
+			max('Item'[brand]) = "Brand 6" , "orange",
+			max('Item'[brand]) = "Brand 7" , "brown",
+			max('Item'[brand]) = "Brand 8" , "Cyan",
+			max('Item'[brand]) = "Brand 9" , "Tan",
+			max('Item'[brand]) = "Brand 10" , "Violet",
+			max('Item'[brand]) = "Brand 11" , "Gold",
+			"silver"
+			)
+		lineageTag: 03df3bcb-2cf6-46e0-8de7-3afe74ec7408
+
+	measure 'Color category Brand' =
+			Switch( true(),
+			max('Item'[brand]) = "Brand 1" , "red",
+			max('Item'[brand]) = "Brand 2" , "blue",
+			max('Item'[brand]) = "Brand 3" , "green",
+			max('Item'[brand]) = "Brand 4" , "gray",
+			max('Item'[brand]) = "Brand 5" , "yellow",
+			max('Item'[brand]) = "Brand 6" , "orange",
+			max('Item'[brand]) = "Brand 7" , "brown",
+			max('Item'[brand]) = "Brand 8" , Switch(true(), max('Item'[Category]) = "Category 1"  ,"Cyan",max('Item'[Category]) = "Category 2" , "White","Black"),
+			max('Item'[brand]) = "Brand 9" , "Tan",
+			max('Item'[brand]) = "Brand 10" , "Violet",
+			max('Item'[brand]) = "Brand 11" , "Gold",
+			"silver"
+			)
+		lineageTag: c3dbbeb0-cd11-43ab-a0b1-57febea98396
+
+	measure Exclude = ```
+			var _tab = EXCEPT(ALL('Item'[Category]), ALLSELECTED('Item'[Category]))
+			return 
+			CALCULATE(sum(Sales[Net Sales]), FILTER(all('Item'), 'Item'[Category] in _tab))
+			
+			
+			 
+			```
+		lineageTag: fd77765f-da68-4456-93e6-8cb3249e9768
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Rolling 12 Net' = CALCULATE([Net], DATESINPERIOD('Date'[Date],MAX('Date'[Date]),-12,MONTH))
+		lineageTag: f5b77c1a-95fc-4b73-9290-8ab58dd65f69
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Measure 2' = TODAY() - WEEKDAY( TODAY() )
+		formatString: General Date
+		lineageTag: fe1dd781-0c8a-4da4-b69a-5bd53c5d2636
+
+	measure 'Total Qty' = Sum(Sales[Qty])
+		formatString: 0
+		lineageTag: 228e35a7-19df-4a8c-b7c3-3c75d7803423
+
+	measure 'Is Qty 35' = sumx(VALUES(Customer[Name]), if([Total Qty]=29,1,BLANK()))
+		formatString: 0
+		lineageTag: a264cd6f-3a0c-47a2-9eb4-13e6bc0e9214
+
+	column 'Customer Id'
+		dataType: int64
+		formatString: 0
+		lineageTag: 5aa19959-b529-477f-8840-6205a38a8123
+		summarizeBy: none
+		sourceColumn: Customer Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age
+		dataType: int64
+		formatString: 0
+		lineageTag: ac5190f7-b410-42e4-8a3a-72793363b6e4
+		summarizeBy: none
+		sourceColumn: Age
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 54e60ab3-834b-408b-ba8b-9cd7c9122f5a
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: 7d8bd00a-2539-44c9-96bf-94c2b3a67c88
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: c2207d6d-6cc3-476f-b060-41a32db448c0
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Customer-fd43fa41-c037-497b-8787-d3912e47179d = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\Amit.Chandak\Google Drive\Kanerika\power bi\Data\sales_data_config1.xlsx"), null, true),
+				    Customer_Sheet = Source{[Item="Customer",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Customer_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Customer Id", Int64.Type}, {"Age", Int64.Type}, {"City", type text}, {"State", type text}, {"Name", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

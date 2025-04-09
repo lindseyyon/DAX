@@ -1,0 +1,65 @@
+{
+  "config": "{\"version\":\"5.47\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY23SU08\",\"version\":\"5.48\",\"type\":2},\"customTheme\":{\"name\":\"Marvel_Icons6954201527429871.json\",\"version\":\"5.48\",\"type\":1}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"useEnhancedTooltips\":true,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY23SU08",
+            "path": "BaseThemes/CY23SU08.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    },
+    {
+      "resourcePackage": {
+        "items": [
+          {
+            "name": "Marvel_Icons6954201527429871.json",
+            "path": "Marvel_Icons6954201527429871.json",
+            "type": 100
+          }
+        ],
+        "name": "RegisteredResources",
+        "type": 1
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{}",
+      "displayName": "Page 1",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "ReportSection",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"32199da8a1664844a04a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":632.6819126819126,\"y\":138.3783783783784,\"z\":1,\"width\":315.34303534303535,\"height\":287.4012474012474,\"tabOrder\":1}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Table.Character\"},{\"queryRef\":\"Sum(Table.Order)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"t\",\"Entity\":\"Table\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"Character\"},\"Name\":\"Table.Character\",\"NativeReferenceName\":\"Character\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"Order\"},\"Name\":\"Sum(Table.Order)\",\"NativeReferenceName\":\"Icon\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"Order\"}}}]},\"columnProperties\":{\"Sum(Table.Order)\":{\"displayName\":\"Icon\"}},\"drillFilterOtherVisuals\":true,\"objects\":{\"grid\":[{\"properties\":{\"rowPadding\":{\"expr\":{\"Literal\":{\"Value\":\"12D\"}}}}}],\"values\":[{\"properties\":{\"icon\":{\"kind\":\"Icon\",\"layout\":{\"expr\":{\"Literal\":{\"Value\":\"'IconOnly'\"}}},\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}},\"value\":{\"expr\":{\"Conditional\":{\"Cases\":[{\"Condition\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Table\"}},\"Property\":\"Order\"}},\"Function\":0}},\"Right\":{\"Literal\":{\"Value\":\"4D\"}}}},\"Value\":{\"Literal\":{\"Value\":\"'BB'\"}}},{\"Condition\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Table\"}},\"Property\":\"Order\"}},\"Function\":0}},\"Right\":{\"Literal\":{\"Value\":\"3D\"}}}},\"Value\":{\"Literal\":{\"Value\":\"'RB'\"}}},{\"Condition\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Table\"}},\"Property\":\"Order\"}},\"Function\":0}},\"Right\":{\"Literal\":{\"Value\":\"2D\"}}}},\"Value\":{\"Literal\":{\"Value\":\"'RC'\"}}},{\"Condition\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Table\"}},\"Property\":\"Order\"}},\"Function\":0}},\"Right\":{\"Literal\":{\"Value\":\"1D\"}}}},\"Value\":{\"Literal\":{\"Value\":\"'YB'\"}}}]}}}}},\"selector\":{\"data\":[{\"dataViewWildcard\":{\"matchingOption\":1}}],\"metadata\":\"Sum(Table.Order)\"}},{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"14D\"}}}}},{\"properties\":{\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Conditional\":{\"Cases\":[{\"Condition\":{\"StartsWith\":{\"Left\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Table\"}},\"Property\":\"Character\"}},\"Function\":3}},\"Right\":{\"Literal\":{\"Value\":\"'T'\"}}},\"Annotations\":{\"PowerBI.SQExprEvaluationKind\":1,\"PowerBI.SQExprTextOperatorOption\":8}},\"Value\":{\"Literal\":{\"Value\":\"'#7F0F95'\"}}},{\"Condition\":{\"StartsWith\":{\"Left\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Table\"}},\"Property\":\"Character\"}},\"Function\":3}},\"Right\":{\"Literal\":{\"Value\":\"'I'\"}}},\"Annotations\":{\"PowerBI.SQExprEvaluationKind\":1,\"PowerBI.SQExprTextOperatorOption\":8}},\"Value\":{\"Literal\":{\"Value\":\"'#E62626'\"}}},{\"Condition\":{\"StartsWith\":{\"Left\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Table\"}},\"Property\":\"Character\"}},\"Function\":3}},\"Right\":{\"Literal\":{\"Value\":\"'H'\"}}},\"Annotations\":{\"PowerBI.SQExprEvaluationKind\":1,\"PowerBI.SQExprTextOperatorOption\":8}},\"Value\":{\"Literal\":{\"Value\":\"'#048A0F'\"}}},{\"Condition\":{\"StartsWith\":{\"Left\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Table\"}},\"Property\":\"Character\"}},\"Function\":3}},\"Right\":{\"Literal\":{\"Value\":\"'B'\"}}},\"Annotations\":{\"PowerBI.SQExprEvaluationKind\":1,\"PowerBI.SQExprTextOperatorOption\":8}},\"Value\":{\"Literal\":{\"Value\":\"'#333333'\"}}}]}}}}}},\"selector\":{\"data\":[{\"dataViewWildcard\":{\"matchingOption\":1}}],\"metadata\":\"Table.Character\"}}],\"total\":[{\"properties\":{\"totals\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"211.1359209248038D\"}}}},\"selector\":{\"metadata\":\"Table.Character\"}}],\"columnFormatting\":[{\"properties\":{\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Center'\"}}},\"styleHeader\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}},\"selector\":{\"metadata\":\"Sum(Table.Order)\"}}]},\"vcObjects\":{\"stylePreset\":[{\"properties\":{\"name\":{\"expr\":{\"Literal\":{\"Value\":\"'None'\"}}}}}],\"title\":[{\"properties\":{\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 287.40,
+          "width": 315.34,
+          "x": 632.68,
+          "y": 138.38,
+          "z": 1.00
+        },
+        {
+          "config": "{\"name\":\"c501dd0142707a77b6c0\",\"layouts\":[{\"id\":0,\"position\":{\"x\":173.63825363825364,\"y\":138.3783783783784,\"z\":0,\"width\":315.34303534303535,\"height\":287.4012474012474,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Table.Character\"},{\"queryRef\":\"Sum(Table.Order)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"t\",\"Entity\":\"Table\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"Character\"},\"Name\":\"Table.Character\",\"NativeReferenceName\":\"Character\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"Order\"},\"Name\":\"Sum(Table.Order)\",\"NativeReferenceName\":\"Icon\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"Order\"}}}]},\"columnProperties\":{\"Sum(Table.Order)\":{\"displayName\":\"Icon\"}},\"drillFilterOtherVisuals\":true,\"objects\":{\"grid\":[{\"properties\":{\"rowPadding\":{\"expr\":{\"Literal\":{\"Value\":\"12D\"}}}}}],\"values\":[{\"properties\":{\"icon\":{\"kind\":\"Icon\",\"layout\":{\"expr\":{\"Literal\":{\"Value\":\"'IconOnly'\"}}},\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}},\"value\":{\"expr\":{\"Conditional\":{\"Cases\":[{\"Condition\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Table\"}},\"Property\":\"Order\"}},\"Function\":0}},\"Right\":{\"Literal\":{\"Value\":\"4D\"}}}},\"Value\":{\"Literal\":{\"Value\":\"'4CircleLow'\"}}},{\"Condition\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Table\"}},\"Property\":\"Order\"}},\"Function\":0}},\"Right\":{\"Literal\":{\"Value\":\"3D\"}}}},\"Value\":{\"Literal\":{\"Value\":\"'4CircleMedium2'\"}}},{\"Condition\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Table\"}},\"Property\":\"Order\"}},\"Function\":0}},\"Right\":{\"Literal\":{\"Value\":\"2D\"}}}},\"Value\":{\"Literal\":{\"Value\":\"'CircleHigh'\"}}},{\"Condition\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Table\"}},\"Property\":\"Order\"}},\"Function\":0}},\"Right\":{\"Literal\":{\"Value\":\"1D\"}}}},\"Value\":{\"Literal\":{\"Value\":\"'CircleLow'\"}}}]}}}}},\"selector\":{\"data\":[{\"dataViewWildcard\":{\"matchingOption\":1}}],\"metadata\":\"Sum(Table.Order)\"}},{\"properties\":{\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Conditional\":{\"Cases\":[{\"Condition\":{\"StartsWith\":{\"Left\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Table\"}},\"Property\":\"Character\"}},\"Function\":3}},\"Right\":{\"Literal\":{\"Value\":\"'T'\"}}},\"Annotations\":{\"PowerBI.SQExprEvaluationKind\":1,\"PowerBI.SQExprTextOperatorOption\":8}},\"Value\":{\"Literal\":{\"Value\":\"'#7F0F95'\"}}},{\"Condition\":{\"StartsWith\":{\"Left\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Table\"}},\"Property\":\"Character\"}},\"Function\":3}},\"Right\":{\"Literal\":{\"Value\":\"'I'\"}}},\"Annotations\":{\"PowerBI.SQExprEvaluationKind\":1,\"PowerBI.SQExprTextOperatorOption\":8}},\"Value\":{\"Literal\":{\"Value\":\"'#E62626'\"}}},{\"Condition\":{\"StartsWith\":{\"Left\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Table\"}},\"Property\":\"Character\"}},\"Function\":3}},\"Right\":{\"Literal\":{\"Value\":\"'H'\"}}},\"Annotations\":{\"PowerBI.SQExprEvaluationKind\":1,\"PowerBI.SQExprTextOperatorOption\":8}},\"Value\":{\"Literal\":{\"Value\":\"'#048A0F'\"}}},{\"Condition\":{\"StartsWith\":{\"Left\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Table\"}},\"Property\":\"Character\"}},\"Function\":3}},\"Right\":{\"Literal\":{\"Value\":\"'B'\"}}},\"Annotations\":{\"PowerBI.SQExprEvaluationKind\":1,\"PowerBI.SQExprTextOperatorOption\":8}},\"Value\":{\"Literal\":{\"Value\":\"'#333333'\"}}}]}}}}}},\"selector\":{\"data\":[{\"dataViewWildcard\":{\"matchingOption\":1}}],\"metadata\":\"Table.Character\"}},{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"14D\"}}}}}],\"total\":[{\"properties\":{\"totals\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"211.1359209248038D\"}}}},\"selector\":{\"metadata\":\"Table.Character\"}}],\"columnFormatting\":[{\"properties\":{\"styleHeader\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Center'\"}}}},\"selector\":{\"metadata\":\"Sum(Table.Order)\"}}]},\"vcObjects\":{\"stylePreset\":[{\"properties\":{\"name\":{\"expr\":{\"Literal\":{\"Value\":\"'None'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 287.40,
+          "width": 315.34,
+          "x": 173.64,
+          "y": 138.38,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ],
+  "theme": "Marvel_Icons6954201527429871.json"
+}

@@ -1,0 +1,197 @@
+table Sales
+	lineageTag: eb6e2758-90ae-41bc-87f9-68aa4472d628
+
+	column Country
+		dataType: string
+		lineageTag: a4f6b310-269c-49f3-9b80-013b2c168aad
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Manufacturer
+		dataType: string
+		isHidden
+		lineageTag: 108f6126-70fa-45b2-ade7-96d6f318c06f
+		summarizeBy: none
+		sourceColumn: Manufacturer
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_ChangedProperties = ["IsHidden"]
+
+	column 'Brand Name'
+		dataType: string
+		lineageTag: 6e3e7184-1480-4613-b5bb-5a52cd062560
+		summarizeBy: none
+		sourceColumn: Brand Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Class
+		dataType: string
+		lineageTag: c5c18c65-f1e0-418f-b7bd-11691afec7a7
+		summarizeBy: none
+		sourceColumn: Class
+
+		annotation SummarizationSetBy = Automatic
+
+	column Color
+		dataType: string
+		isHidden
+		lineageTag: 6915db01-8362-4b27-ad0a-239d362b7c3e
+		summarizeBy: none
+		sourceColumn: Color
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_ChangedProperties = ["IsHidden"]
+
+	column StockType
+		dataType: string
+		isHidden
+		lineageTag: 961ca469-8c21-436b-a90d-b40644bc1f12
+		summarizeBy: none
+		sourceColumn: StockType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_ChangedProperties = ["IsHidden"]
+
+	column Units
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: de8d9058-943f-4e5e-8752-148c228350df
+		summarizeBy: sum
+		sourceColumn: Units
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_ChangedProperties = ["IsHidden"]
+
+	column 'Sales Amount'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 144595b5-a758-42f2-8222-08fffb972b24
+		summarizeBy: sum
+		sourceColumn: Sales Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_ChangedProperties = ["IsHidden"]
+
+	column 'Sale Size'
+		dataType: string
+		isHidden
+		lineageTag: 1624a69f-bd0d-43d8-bcae-58af934b3e0e
+		summarizeBy: none
+		sourceColumn: Sale Size
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_ChangedProperties = ["IsHidden"]
+
+	column 'Unit Cost'
+		dataType: double
+		isHidden
+		lineageTag: e167163a-1208-440f-af45-8acdcacbcff2
+		summarizeBy: sum
+		sourceColumn: Unit Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_ChangedProperties = ["IsHidden"]
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Unit Price'
+		dataType: double
+		isHidden
+		lineageTag: cfc4fa46-3df6-4e19-8798-fadb79f2a21f
+		summarizeBy: sum
+		sourceColumn: Unit Price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_ChangedProperties = ["IsHidden"]
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SalesTax
+		dataType: double
+		isHidden
+		lineageTag: b3f41bf6-ccac-4ecc-b6d2-35036e8a44b5
+		summarizeBy: sum
+		sourceColumn: SalesTax
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_ChangedProperties = ["IsHidden"]
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Freight
+		dataType: double
+		isHidden
+		lineageTag: 2c1d87d4-e260-4191-8800-1f1ba6f6c941
+		summarizeBy: sum
+		sourceColumn: Freight
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_ChangedProperties = ["IsHidden"]
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ProdID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: ea6d9f49-3b42-462f-9057-9c89f4ca8c47
+		summarizeBy: none
+		sourceColumn: ProdID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_ChangedProperties = ["IsHidden"]
+
+	column OrderDate
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: aea610d0-c420-4d8e-a7fa-401a7bd13408
+		summarizeBy: none
+		sourceColumn: OrderDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_ChangedProperties = ["IsHidden"]
+
+	partition Sales-ac32ddbe-6ab6-40c5-897f-23eac2a2ee9e = m
+		mode: import
+		queryGroup: 'Load to Data Model\Fact Tables'
+		source =
+				let
+				    Source = #"Data Source",
+				    Sales_Table = Source{[Item="Sales",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(Sales_Table,{{"SalesOrderID", type text}, {"Country", type text}, {"OrderDate", type date}, {"SalesChannelCode", type text}, {"ProdID", Int64.Type}, {"StyleName", type text}, {"CustomerAccountNumber", type text}, {"StoreKey", type any}, {"ProductLabel", Int64.Type}, {"ProductDescription", type text}, {"Manufacturer", type text}, {"Brand Name", type text}, {"Class", type text}, {"Color", type text}, {"StockType", type text}, {"Units", Int64.Type}, {"Sales Amount", Int64.Type}, {"NSAT", Int64.Type}, {"SubCategory", type text}, {"Category", type text}, {"Sale Size", type text}, {"ProductName", type text}, {"Unit Cost", type number}, {"Unit Price", type number}, {"SalesTax", type number}, {"Freight", type number}, {"PurchAgain", Int64.Type}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"StyleName", "Style Name"}}),
+				    #"Filtered to 2013 or Later" = Table.SelectRows(#"Renamed Columns", each [OrderDate] >= #date(2013, 1, 1)),
+				    #"Added Order Date" = Table.AddColumn(#"Filtered to 2013 or Later", "Order Date", each Date.AddYears([OrderDate], 7)),
+				    #"Changed to Text" = Table.TransformColumnTypes(#"Added Order Date",{{"Order Date", type text}}),
+				    #"Replaced 2022 to 2023" = Table.ReplaceValue(#"Changed to Text","2022","2023",Replacer.ReplaceText,{"Order Date"}),
+				    #"Replaced 2020 to 2022" = Table.ReplaceValue(#"Replaced 2022 to 2023","2020","2022",Replacer.ReplaceText,{"Order Date"}),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Replaced 2020 to 2022",{"Country", "ProdID", "Manufacturer", "Brand Name", "Class", "Color", "StockType", "Units", "Sales Amount", "Sale Size", "Unit Cost", "Unit Price", "SalesTax", "Freight", "Order Date"}),
+				    #"Renamed OrderDate" = Table.RenameColumns(#"Removed Other Columns",{{"Order Date", "OrderDate"}}),
+				    #"Changed to Date" = Table.TransformColumnTypes(#"Renamed OrderDate",{{"OrderDate", type date}})
+				in
+				    #"Changed to Date"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,7 @@
+expression Parameter1 = "ABC" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: cc1d0424-213d-4bed-8d00-7595e6db0f7c
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+

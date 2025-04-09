@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "nav pane"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "816b7799-8391-9d45-46e1-4c13553a4890"
+  }
+}

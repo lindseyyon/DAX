@@ -1,0 +1,158 @@
+table DAX
+	lineageTag: caa296fe-a325-4e40-b36a-31a1b41386be
+
+	measure Sales = SUM(Sales[Sales Amount])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: .Base
+		lineageTag: a2d469e1-2964-440c-9bc0-147b68c1b4f3
+
+	measure 'PY Sales' = CALCULATE([Sales], DATEADD('Calendar'[Date], -1, YEAR))
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: .Time Intelligence
+		lineageTag: 45d29a49-dac8-41c7-8603-e847e1063537
+
+	measure 'YoY Sales' =
+			
+			VAR Sale = [Sales]
+			VAR PYSale = [PY Sales]
+			VAR Result = IF( AND( Sale, PYSale), Sale - PYSale)
+			RETURN
+			Result
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: .Time Intelligence
+		lineageTag: 9fd69fa7-2c4b-4180-b142-7c501f1ee91d
+
+	measure 'YoY Sales %' = DIVIDE([YoY Sales], [PY Sales])
+		formatString: 0%;-0%;0%
+		displayFolder: .Time Intelligence
+		lineageTag: e05dfca7-3945-417b-8ab4-fe53d10b286b
+
+	measure 'Average Sales' = AVERAGE(Sales[Sales Amount])
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: .Base
+		lineageTag: b2b7a78f-e2c0-44ec-9630-951a28f58321
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure Units = SUM(Sales[Units])
+		formatString: #,0
+		displayFolder: .Base
+		lineageTag: 53f999e5-6823-4851-887d-8347734cdff9
+
+	measure 'Latest Sales Date' = MAX('Calendar'[Date])
+		formatString: dd-mmm-yy
+		displayFolder: .Misc
+		lineageTag: 0d1753fc-b201-4b3a-b50c-765b5fb61ce2
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	measure 'Top Product Name' =
+			
+			CALCULATE (
+			    FIRSTNONBLANK ( 'Product'[ProductName], 1 ),
+			    TOPN ( 1, ALL ( 'Product'[ProductName] ), [Sales], DESC )
+			)
+		displayFolder: .Ranking
+		lineageTag: 773ad7bc-db55-4b5f-8ac9-70e877d9da53
+
+	measure 'Top Product Value' =
+			
+			CALCULATE (
+			    [Sales],
+			    TOPN ( 1, ALL ( 'Product'[ProductName] ), [Sales], DESC )
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: .Ranking
+		lineageTag: b67ccc6b-45c3-4dfc-b9e9-154ee5069f13
+
+		annotation PBI_ChangedProperties = ["FormatString"]
+
+	measure 'Sales (Waterfall Value)' =
+			
+			VAR CountryCount = CALCULATE(DISTINCTCOUNT(Sales[Country]), ALLSELECTED(Sales[Country]))
+			VAR Result = IF(CountryCount = 2, [Sales], BLANK())
+			RETURN
+			Result
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: .Waterfall
+		lineageTag: b947c612-c636-49ca-ad6c-0067d01eb4a0
+
+		annotation PBI_ChangedProperties = ["FormatString"]
+
+	measure 'Sales (Waterfall Title)' = ```
+			
+			VAR CountryCount = CALCULATE(DISTINCTCOUNT(Sales[Country]), ALLSELECTED(Sales[Country]))
+			VAR Result = 
+			    SWITCH(TRUE(),
+			        CountryCount = 1, "Select One More Comparison",
+			        CountryCount = 2, "Country Variance Comparison by Sales", 
+			        "Select Only TWO Comparison Values"
+			    )
+			RETURN
+			Result
+			```
+		displayFolder: .Waterfall
+		lineageTag: 724b7a23-01d3-45df-9b8f-f1474af5006b
+
+	measure 'Sales (Waterfall Y Axis Text Color)' =
+			
+			VAR White = "#FFFFFF"
+			VAR DarkGrey = "#777777"
+			VAR CountryCount = CALCULATE(DISTINCTCOUNT(Sales[Country]), ALLSELECTED(Sales[Country]))
+			VAR Result = IF(CountryCount = 2, DarkGrey, White)
+			RETURN
+			Result
+		displayFolder: .Waterfall
+		lineageTag: e38d95dd-254e-4e38-8257-29d0159b988e
+
+	measure 'Sales (Waterfall Gridlines Text Color)' =
+			
+			VAR White = "#FFFFFF"
+			VAR LightGrey = "#E6E6E6"
+			VAR CountryCount = CALCULATE(DISTINCTCOUNT(Sales[Country]), ALLSELECTED(Sales[Country]))
+			VAR Result = IF(CountryCount = 2, LightGrey, White)
+			RETURN
+			Result
+		displayFolder: .Waterfall
+		lineageTag: 32feccda-13ed-49a1-8674-f9d6c2395947
+
+	measure 'Y Axis Start' =
+			
+			VAR Selection = SELECTEDVALUE('Y Axis Selection'[Type])
+			VAR Result = IF(Selection = "Dynamic", BLANK(), 0)
+			RETURN
+			Result
+		formatString: 0
+		displayFolder: .Waterfall
+		lineageTag: 5fc7c926-dcf4-4979-aab6-3569083c89e2
+
+	measure 'Sales (Breakdown Selection)' =
+			
+			VAR Selection = SELECTEDVALUE('Breakdown Selection'[Selection])
+			VAR Result =
+			    SWITCH(TRUE()
+			        ,Selection = "Category", CALCULATE([Sales (Waterfall Value)], USERELATIONSHIP('Breakdown Selection'[Metric], 'Product'[Category]))
+			        ,Selection = "Color", CALCULATE([Sales (Waterfall Value)], USERELATIONSHIP('Breakdown Selection'[Metric], Color[Color]))
+			        ,Selection = "Company", CALCULATE([Sales (Waterfall Value)], USERELATIONSHIP('Breakdown Selection'[Metric], Company[Brand Name]))
+			    )
+			RETURN
+			Result
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: .Waterfall
+		lineageTag: a5fc8167-9efc-4954-8411-595e0303e70e
+
+		annotation PBI_ChangedProperties = ["FormatString"]
+
+	partition DAX-ba00dba2-ac63-435e-9bcd-d7e800aa8dfb = m
+		mode: import
+		queryGroup: 'Load to Data Model\Disconnected Tables'
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

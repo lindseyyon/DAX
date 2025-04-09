@@ -1,0 +1,31 @@
+relationship 27eead2b-53ea-4472-b966-8deef4329bba
+	fromColumn: Sales.ProdID
+	toColumn: Product.ProdID
+
+relationship 4707533c-70a5-4cba-9227-1775758f6080
+	fromColumn: Sales.OrderDate
+	toColumn: Calendar.Date
+
+relationship 1fc33b6f-e727-42c2-a524-a9fa8c387d6c
+	fromColumn: Sales.Manufacturer
+	toColumn: Company.Manufacturer
+
+relationship 510350e1-480c-44cf-8e13-ff8e8adc7475
+	fromColumn: Sales.Color
+	toColumn: Color.Color
+
+relationship 71fc5d06-6910-4e62-9df7-00f8df43ba21
+	isActive: false
+	fromColumn: Product.Category
+	toColumn: 'Breakdown Selection'.Metric
+
+relationship 073549e5-4558-4cef-84df-c5f0d0937470
+	isActive: false
+	fromColumn: Company.'Brand Name'
+	toColumn: 'Breakdown Selection'.Metric
+
+relationship 255b2db8-bf9b-4d00-8555-5b143bfa2733
+	isActive: false
+	fromColumn: Color.Color
+	toColumn: 'Breakdown Selection'.Metric
+

@@ -1,0 +1,41 @@
+table Player
+	lineageTag: 8f7bebe7-e3c4-4ce3-8c5b-cd94d69e0076
+
+	measure 'Selected Player' = SELECTEDVALUE(Player[Name])
+		lineageTag: 3926d089-62d6-4553-b0aa-7a55ac6ebe28
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PlayerID
+		dataType: string
+		isHidden
+		lineageTag: b3b9fc5a-ef7b-4242-9d4a-790b88089367
+		summarizeBy: none
+		sourceColumn: PlayerID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: 530898d6-344a-493d-bad9-22699f2ed230
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Player = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("HcxBCoAgEEDRqwyz7hQFLaRFuBBCXAwqNaAjaN4/c/s+fGtRb7igLqEybNQ8yRvRLRavY/hBmQUuypQmnvvA8+EEewlRpql1mOohwhpTYrkfyjOY/2xYPPcGqguXis59", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [PlayerID = _t, Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"PlayerID", type text}, {"Column1", type text}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"Column1", "Name"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

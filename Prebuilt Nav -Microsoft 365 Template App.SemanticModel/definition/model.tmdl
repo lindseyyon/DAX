@@ -1,0 +1,7 @@
+model Model
+	culture: en-US
+
+annotation PBIDesktopVersion = 2.76.5678.782 (19.12)
+
+ref cultureInfo en-US
+

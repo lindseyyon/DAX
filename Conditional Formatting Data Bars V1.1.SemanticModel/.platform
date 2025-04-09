@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Conditional Formatting Data Bars V1.1"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "c54e6c4f-461c-8917-4e8d-703ba2b6f38a"
+  }
+}

@@ -1,0 +1,9 @@
+relationship AutoDetected_6f752d0e-427d-43de-8cd6-aa7b5f6c1af8
+	fromColumn: Games.Player
+	toColumn: Player.PlayerID
+
+relationship 9653e529-dd7c-55cd-c205-94c077799657
+	toCardinality: many
+	fromColumn: Position.Position
+	toColumn: Games.Position
+
