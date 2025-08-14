@@ -1,0 +1,22 @@
+AOV MTD ΔLY Label = 
+
+VAR _ValueToFormat = [AOV MTD Diff LY]
+VAR _KPI = IF([AOV MTD Diff LY] > 0 , 1, 0)
+VAR _ValueFormatted = 
+    SWITCH(
+        TRUE(),
+        _ValueToFormat < 1000, FORMAT(_ValueToFormat, "$0,0;($0)"),
+        _ValueToFormat  < 1000000, FORMAT(_ValueToFormat / 1000, "$0.##;($0.##)") & "K",
+        _ValueToFormat < 1000000000, FORMAT(_ValueToFormat / 1000000, "$0.##;($0.##)") & "M",
+        _ValueToFormat < 1000000000000, FORMAT(_ValueToFormat / 1000000000, "$0.##;($0.##)") & "B",
+        FORMAT(_ValueToFormat / 1000000000000, "$0.##;($0.##)") & "T"
+    )
+
+VAR Result = //[AOV MTD KPI Icon] //& "ΔLY  " 
+//& "‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎" &
+ --_ValueFormatted & " | "
+  [AOV MTD KPI Icon] & FORMAT([AOV MTD YoY %], "Percent")
+
+RETURN IF([AOV MTD] > 0,
+Result
+)
