@@ -1,0 +1,78 @@
+Adjustable Sparkline = 
+VAR svg_width = 150  -- Control width
+VAR svg_height = 50  -- Control height
+VAR stroke_color = "#9126B6" --Control Sparkline Stroke Color
+VAR gradient_color = "#E6BCF4" --Control Sparkline Gradient Color
+
+VAR InputTable =  -- Input Columns
+    SELECTCOLUMNS(
+        SUMMARIZECOLUMNS(
+            'DateTable'[MonthNumber],
+            "Y", [Sales Val]
+        ),
+        "X", 'DateTable'[MonthNumber],
+        "Y", [Y]
+    )
+
+
+VAR NonBlankData =
+    ADDCOLUMNS(
+        InputTable,
+        "Y_Adj", IF(ISBLANK([Y]), 0, [Y])
+    )
+
+VAR RankedData =
+    ADDCOLUMNS(
+        NonBlankData,
+        "X_Rank", RANKX(NonBlankData, [X], , ASC)
+    )
+
+VAR TotalPoints = COUNTROWS(RankedData)
+VAR MaxIndex = TotalPoints - 1
+VAR SpacedPoints =
+    ADDCOLUMNS(
+        RankedData,
+        "XPos", 
+            DIVIDE(([X_Rank] - 1), MaxIndex) * svg_width
+    )
+
+VAR MinY = MINX(SpacedPoints, [Y_Adj])
+VAR MaxY = MAXX(SpacedPoints, [Y_Adj])
+
+VAR PointsWithYPos =
+    ADDCOLUMNS(
+        SpacedPoints,
+        "YPos",
+        IF(
+            MaxY = MinY,
+            svg_height * 0.5,
+            svg_height - DIVIDE([Y_Adj] - MinY, MaxY - MinY) * (svg_height - 10)
+        )
+    )
+
+VAR PolylinePoints =
+    CONCATENATEX(
+        PointsWithYPos,
+        FORMAT([XPos], "0.0") & "," & FORMAT([YPos], "0.0"),
+        " "
+    )
+
+VAR FirstX = MINX(PointsWithYPos, [XPos])
+VAR LastX = MAXX(PointsWithYPos, [XPos])
+VAR PolygonPoints =
+    FirstX & "," & svg_height & " " & PolylinePoints & " " & LastX & "," & svg_height
+
+VAR Svg =
+    "<svg width='" & svg_width & "' height='" & svg_height & "' viewBox='0 0 " & svg_width & " " & svg_height & "' xmlns='http://www.w3.org/2000/svg'>" &
+    "<defs>" &
+        "<linearGradient id='grad' x1='0' y1='0' x2='0' y2='1'>" &
+            "<stop offset='0%' stop-color='"& gradient_color &"' stop-opacity='0.6'/>" &
+            "<stop offset='100%' stop-color='"& gradient_color &"' stop-opacity='0'/>" &
+        "</linearGradient>" &
+    "</defs>" &
+    "<polygon fill='url(#grad)' points='" & PolygonPoints & "' />" &
+    "<polyline fill='none' stroke='" & stroke_color & "' stroke-width='2' points='" & PolylinePoints & "' />" &
+    "</svg>"
+
+RETURN
+    "data:image/svg+xml;utf8," & Svg
