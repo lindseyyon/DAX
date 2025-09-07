@@ -1,0 +1,131 @@
+Adjustable Sparkline with target, callout, subline, and check = 
+VAR svg_width = 300
+VAR svg_height = 100  -- Increased height for space
+VAR left_margin = 140  -- Space for KPI callout
+
+-- KPI Callout (you can change this to % diff or any other value)
+VAR kpi_value = FORMAT([Sales Val], "$#,###")
+
+-- Set threshold for KPI value (for example, if KPI value is above 10000, show the X mark)
+VAR kpi_threshold = 1000
+
+VAR smaller_text = if([Sales Val] > kpi_threshold, "Target Achieved", "Target Not Met")  -- Example of the second line text, you can modify this as needed
+
+-- Control the fill color of the check mark and the X mark
+VAR check_fill_color = "#4CBB17"  -- Set this variable to any color you want for the check mark
+VAR x_fill_color = "#ff4122"  -- Set this variable to any color you want for the X mark
+
+--Conrol the fill color of the graph
+VAR stroke_color_1 = if([Sales Val] > kpi_threshold,"#115D33","#ed3419")
+VAR gradient_color_1 = if([Sales Val] > kpi_threshold,"#4CBB17","#ff8164")
+VAR stroke_color_2 = "gray"
+VAR stroke_dasharray_2 = "4,2"
+
+-- Determine which SVG to use based on the KPI value
+VAR check_svg = IF(
+    [Sales Val] > kpi_threshold,
+    "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='" & check_fill_color & "'><path d='m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z'/></svg>",
+    "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='" & x_fill_color & "'><path d='M330-120 120-330v-300l210-210h300l210 210v300L630-120H330Zm36-190 114-114 114 114 56-56-114-114 114-114-56-56-114 114-114-114-56 56 114 114-114 114 56 56Z'/></svg>"
+)
+
+-- Line 1: Current Sales
+VAR InputTable1 = 
+    SELECTCOLUMNS(
+        SUMMARIZECOLUMNS(
+            'DateTable'[MonthNumber],
+            "Y", [Sales Val]
+        ),
+        "X", 'DateTable'[MonthNumber],
+        "Y", [Y]
+    )
+
+-- Line 2: Last Year Sales (or Target)
+VAR InputTable2 = 
+    SELECTCOLUMNS(
+        SUMMARIZECOLUMNS(
+            'DateTable'[MonthNumber],
+            "Y", [Sales LY]  -- Replace with your second series
+        ),
+        "X", 'DateTable'[MonthNumber],
+        "Y", [Y]
+    )
+
+-- Clean blanks
+VAR Table1 = ADDCOLUMNS(InputTable1, "Y_Adj", IF(ISBLANK([Y]), 0, [Y]))
+VAR Table2 = ADDCOLUMNS(InputTable2, "Y_Adj", IF(ISBLANK([Y]), 0, [Y]))
+
+-- X ranking
+VAR Ranked1 = ADDCOLUMNS(Table1, "X_Rank", RANKX(Table1, [X], , ASC))
+VAR Ranked2 = ADDCOLUMNS(Table2, "X_Rank", RANKX(Table2, [X], , ASC))
+
+-- Normalize X position
+VAR TotalPoints = COUNTROWS(Ranked1)
+VAR MaxIndex = TotalPoints - 1
+
+VAR Spaced1 = ADDCOLUMNS(Ranked1, "XPos", DIVIDE([X_Rank] - 1, MaxIndex) * (svg_width - left_margin) + left_margin)
+VAR Spaced2 = ADDCOLUMNS(Ranked2, "XPos", DIVIDE([X_Rank] - 1, MaxIndex) * (svg_width - left_margin) + left_margin)
+
+-- Shared Y scale
+VAR MinY = MIN(MINX(Spaced1, [Y_Adj]), MINX(Spaced2, [Y_Adj]))
+VAR MaxY = MAX(MAXX(Spaced1, [Y_Adj]), MAXX(Spaced2, [Y_Adj]))
+
+-- Compute Y position
+VAR Final1 =
+    ADDCOLUMNS(
+        Spaced1,
+        "YPos",
+        IF(
+            MaxY = MinY,
+            svg_height * 0.5,
+            svg_height - DIVIDE([Y_Adj] - MinY, MaxY - MinY) * (svg_height - 10)
+        )
+    )
+
+VAR Final2 =
+    ADDCOLUMNS(
+        Spaced2,
+        "YPos",
+        IF(
+            MaxY = MinY,
+            svg_height * 0.5,
+            svg_height - DIVIDE([Y_Adj] - MinY, MaxY - MinY) * (svg_height - 10)
+        )
+    )
+
+-- Points to plot
+VAR PolylinePoints1 =
+    CONCATENATEX(Final1, FORMAT([XPos], "0.0") & "," & FORMAT([YPos], "0.0"), " ")
+
+VAR PolylinePoints2 =
+    CONCATENATEX(Final2, FORMAT([XPos], "0.0") & "," & FORMAT([YPos], "0.0"), " ")
+
+-- Area fill under main line
+VAR FirstX = MINX(Final1, [XPos])
+VAR LastX = MAXX(Final1, [XPos])
+VAR PolygonPoints = FirstX & "," & svg_height & " " & PolylinePoints1 & " " & LastX & "," & svg_height
+
+-- Compose SVG
+VAR Svg =
+    "<svg width='" & svg_width & "' height='" & svg_height & "' viewBox='0 0 " & svg_width & " " & svg_height & "' xmlns='http://www.w3.org/2000/svg'>" &
+    "<defs>" &
+        "<linearGradient id='grad' x1='0' y1='0' x2='0' y2='1'>" &
+            "<stop offset='0%' stop-color='" & gradient_color_1 & "' stop-opacity='0.6'/>" &
+            "<stop offset='100%' stop-color='" & gradient_color_1 & "' stop-opacity='0'/>" &
+        "</linearGradient>" &
+    "</defs>" &
+    -- KPI Callout (left side, centered vertically)
+    "<text x='35' y='" & svg_height / 2 & "' font-size='18' font-family='Segoe UI' fill='black' font-weight='bold' dominant-baseline='middle'>" & kpi_value & "</text>" &
+    
+    -- Smaller text below the KPI value
+    "<text x='35' y='" & (svg_height / 2 + 18) & "' font-size='12' font-family='Segoe UI' fill='black' dominant-baseline='middle'>" & smaller_text & "</text>" &
+    
+    -- Add the check or X mark SVG to the left of the KPI
+    "<g transform='translate(5, " & (svg_height / 2 - 12) & ")'>" & check_svg & "</g>" &
+    
+    "<polygon fill='url(#grad)' points='" & PolygonPoints & "' />" &
+    "<polyline fill='none' stroke='" & stroke_color_1 & "' stroke-width='2' points='" & PolylinePoints1 & "' />" &
+    "<polyline fill='none' stroke='" & stroke_color_2 & "' stroke-width='1.5' stroke-dasharray='" & stroke_dasharray_2 & "' points='" & PolylinePoints2 & "' />" &
+    "</svg>"
+
+RETURN
+    "data:image/svg+xml;utf8," & Svg
